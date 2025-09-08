@@ -41,8 +41,7 @@ export default function Home() {
           <EmailForm onPreview={handlePreview} />
         </div>
 
-        {/* Role-Based Access Controls */}
-        <RoleAccessControls />
+      
       </main>
 
       {/* Email Preview Modal */}
