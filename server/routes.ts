@@ -28,46 +28,130 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-// Email template function matching the specification exactly
+// Email template function matching the detailed customer insights specification
 function generateEmailHTML(companyName: string): string {
   return `<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Closure Report - ${companyName}</title>
+    <title>Customer Insights - ${companyName}</title>
 </head>
-<body style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Ubuntu,sans-serif; line-height: 1.4; color: #374151; margin: 0; padding: 20px; background-color: #ffffff;">
-    <div style="max-width: 600px; margin: 0 auto;">
-        <img src="https://app.rulebase.co/img/rulebase-logo.png" alt="Rulebase" width="64" height="64" style="margin-bottom: 16px;" />
-        
-        <h1 style="color: #1f2937; font-size: 24px; font-weight: 600; line-height: 1.25; margin: 0 0 16px 0;">
-            Account closure report for ${companyName} - July 2025
-        </h1>
-        
-        <p style="margin: 0 0 16px 0;">
-            In July 2025, there were <strong style="font-weight: 600;">115</strong> account closure requests. The key reasons for requesting closure were:
+<body style="margin: 0; padding: 0; background-color: #f5f5f5;">
+    <div style="padding: 48px; background-color: #ffffff; max-width: 600px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, sans-serif;">
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            <img src="https://app.rulebase.co/img/rulebase-logo.png" alt="Rulebase" width="64" height="64" style="margin-bottom: 16px;" />
         </p>
         
-        <ol style="margin: 0 0 16px 0; padding-left: 20px;">
-            <li style="margin-bottom: 8px;"><strong style="font-weight: 600;">Unspecified reasons</strong> (~35%) - Customers requesting closure without providing detailed explanations</li>
-            <li style="margin-bottom: 8px;"><strong style="font-weight: 600;">Banking consolidation</strong> (~25%) - Customers closing accounts because they have multiple banks and want to reduce the number of accounts they maintain</li>
-            <li style="margin-bottom: 8px;"><strong style="font-weight: 600;">Account restrictions/liens</strong> (~20%) - Customer frustration with account restrictions due to erroneous transfer disputes</li>
-            <li style="margin-bottom: 8px;"><strong style="font-weight: 600;">Account setup issues</strong> (~10%) - Problems completing account creation, BVN/NIN mismatches, or profile setup</li>
-            <li style="margin-bottom: 8px;"><strong style="font-weight: 600;">Service dissatisfaction</strong> (~7%) - General dissatisfaction with customer service and resolution processes</li>
-            <li style="margin-bottom: 8px;"><strong style="font-weight: 600;">Overdraft disputes</strong> (~3%) - Issues with overdraft interest calculations and repayment terms</li>
-        </ol>
+        <h1 style="color: #181818; font-size: 24px; font-weight: 600;">Customer insights for ${companyName}</h1>
         
-        <p style="margin: 0 0 24px 0;">
-            Click "View full report" to see all customer interactions.
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            Here are your customer insights from Rulebase for <strong style="font-weight: 600;">September 1, 2025 - September 7, 2025</strong>.
         </p>
         
-        <div style="text-align: center; margin-top: -24px;">
-            <a href="https://app.rulebase.co/reports/demo" 
-               style="background: linear-gradient(135deg, #374151 0%, #4b5563 100%); box-shadow: 0 4px 12px rgba(55, 65, 81, 0.4); color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
-                View full report
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">This week:</p>
+        
+        <ul style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;">We evaluated <strong style="font-weight: 600;">928 total tickets</strong> (5387 total chats, calls, and emails)</li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;">The average QA score was <strong style="font-weight: 600;">95/100</strong> (<strong style="font-weight: 600;">+1</strong> point from last week)</li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;">Customers reported <strong style="font-weight: 600;">434 complaints</strong> about <strong style="font-weight: 600;">payment processing issues</strong> (17%), <strong style="font-weight: 600;">account verification problems</strong> (14%), and <strong style="font-weight: 600;">transaction failures</strong> (11%)</li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;">Customers reported <strong style="font-weight: 600;">588 service issues</strong> with <strong style="font-weight: 600;">delayed transactions</strong> (24%), <strong style="font-weight: 600;">system downtime</strong> (15%), and <strong style="font-weight: 600;">mobile app errors</strong> (8%)</li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;">Customers reported <strong style="font-weight: 600;">8 product issues</strong> with <strong style="font-weight: 600;">loan application failures</strong> and <strong style="font-weight: 600;">card activation problems</strong></li>
+        </ul>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            <img src="https://email-assets.rulebase.co/demo/weekly-overview-chart.png" alt="Weekly Overview Chart" style="max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0;" />
+        </p>
+        
+        <hr style="border-color: #f9f9f9; margin: 40px 0; border-width: 1px 0 0 0; border-style: solid;" />
+        
+        <h2 style="color: #181818; font-size: 18px; font-weight: 500;">Complaints</h2>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            There were <strong style="font-weight: 600;">434 complaints</strong> this week with <strong style="font-weight: 600;">5 high-risk</strong> and <strong style="font-weight: 600;">429 medium-risk</strong>.
+        </p>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">These were the most frequent complaints:</p>
+        
+        <ul style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">75 (17%)</strong> were <strong style="font-weight: 600;">payment processing issues</strong>. For example, <a href="https://app.rulebase.co/conversations/demo1" style="color: #007bff; text-decoration: underline;">customer reported failed transaction with no refund</a></li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">60 (14%)</strong> were <strong style="font-weight: 600;">account verification issues</strong>. For example, <a href="https://app.rulebase.co/conversations/demo2" style="color: #007bff; text-decoration: underline;">account locked during KYC process</a></li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">47 (11%)</strong> were <strong style="font-weight: 600;">transaction failures</strong>. For example, <a href="https://app.rulebase.co/conversations/demo3" style="color: #007bff; text-decoration: underline;">multiple failed transfer attempts</a></li>
+        </ul>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            <strong style="font-weight: 600;">Top service categories mentioned in complaints this week were:</strong> Mobile Banking (75 tickets, 17%), Online Transfers (35 tickets, 8%), Card Services (28 tickets, 6%), and Customer Support (22 tickets, 5%).
+        </p>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            <img src="https://email-assets.rulebase.co/demo/complaints-breakdown-chart.png" alt="Complaints Breakdown" style="max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0;" />
+        </p>
+        
+        <h3 style="color: #181818; font-size: 15px; font-weight: 500;">1. <a href="https://app.rulebase.co/conversations/demo-case-1" style="color: #007bff; text-decoration: underline;">Payment processing failure - Account debited without service delivery</a></h3>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Handling agents:</strong> Sarah Johnson, Michael Chen, Rebecca Adams</p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Date:</strong> September 5, 2025</p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Ticket ID:</strong> <a href="https://support.${companyName.toLowerCase().replace(/\s+/g, '')}.com/tickets/925228" style="color: #007bff; text-decoration: underline;">#925228</a></p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Status:</strong> In Progress</p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Summary:</strong></p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            Customer reported being debited ₦75,000 for a bill payment transaction that failed on September 5th, 2025. Despite multiple follow-ups and confirmation that the transaction failed, the customer has not received a reversal. The case has been escalated to the payments team for investigation, with multiple reminder emails sent, but the customer continues to follow up daily requesting resolution.
+        </p>
+        
+        <blockquote style="background: #f9f9f9; border-left: 10px solid #ccc; margin: 1.5em 10px; padding: 1em 10px;">
+            <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">"When am I going to get my money back? This is very frustrating."</p>
+        </blockquote>
+        
+        <h3 style="color: #181818; font-size: 15px; font-weight: 500;">2. <a href="https://app.rulebase.co/conversations/demo-case-2" style="color: #007bff; text-decoration: underline;">Account verification delays causing business disruption</a></h3>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Handling agents:</strong> David Wilson, Amanda Martinez</p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Date:</strong> September 4, 2025</p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Ticket ID:</strong> <a href="https://support.${companyName.toLowerCase().replace(/\s+/g, '')}.com/tickets/925039" style="color: #007bff; text-decoration: underline;">#925039</a></p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Status:</strong> Resolved</p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">Summary:</strong></p>
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            Business customer reported that their account verification has been pending for over two weeks despite submitting all required documents. This delay has prevented them from processing important business transactions, affecting their operations and client relationships. The verification was eventually completed after escalation to the compliance team.
+        </p>
+        
+        <blockquote style="background: #f9f9f9; border-left: 10px solid #ccc; margin: 1.5em 10px; padding: 1em 10px;">
+            <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">"This delay is affecting my business operations. I need this resolved urgently."</p>
+        </blockquote>
+        
+        <hr style="border-color: #f9f9f9; margin: 40px 0; border-width: 1px 0 0 0; border-style: solid;" />
+        
+        <h2 style="color: #181818; font-size: 18px; font-weight: 500;">Service Issues</h2>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            There were <strong style="font-weight: 600;">588 service issues</strong> reported this week, with <strong style="font-weight: 600;">12 critical</strong> and <strong style="font-weight: 600;">576 standard</strong> priority issues.
+        </p>
+        
+        <ul style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">141 (24%)</strong> were related to <strong style="font-weight: 600;">delayed transactions</strong></li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">88 (15%)</strong> were related to <strong style="font-weight: 600;">system downtime</strong></li>
+            <li style="color: #4b4545; font-size: 14px; line-height: 1.7;"><strong style="font-weight: 600;">47 (8%)</strong> were related to <strong style="font-weight: 600;">mobile app errors</strong></li>
+        </ul>
+        
+        <hr style="border-color: #f9f9f9; margin: 40px 0; border-width: 1px 0 0 0; border-style: solid;" />
+        
+        <h2 style="color: #181818; font-size: 18px; font-weight: 500;">Product Issues</h2>
+        
+        <p style="color: #4b4545; font-size: 14px; line-height: 1.7;">
+            There were <strong style="font-weight: 600;">8 product issues</strong> reported this week, focusing on loan applications and card services.
+        </p>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="https://app.rulebase.co/reports/${companyName.toLowerCase().replace(/\s+/g, '-')}/detailed" 
+               style="background: linear-gradient(135deg, #374151 0%, #4b5563 100%); box-shadow: 0 4px 12px rgba(55, 65, 81, 0.4); color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
+                View detailed report
             </a>
         </div>
+        
+        <hr style="border-color: #f9f9f9; margin: 40px 0; border-width: 1px 0 0 0; border-style: solid;" />
+        
+        <p style="color: #999; font-size: 12px; line-height: 1.4; text-align: center;">
+            This report was generated by Rulebase AI for ${companyName}.<br>
+            Questions? Reply to this email or contact support@rulebase.co
+        </p>
     </div>
 </body>
 </html>`;
