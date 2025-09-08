@@ -1,0 +1,172 @@
+Here's a detailed prompt for your Replit Gen to create the email demo tool:
+
+---
+
+# Email Demo Generator Tool - Full Specification
+
+## Project Overview
+Create a web application that generates demo versions of our customer digest emails for showcasing to potential clients. The tool should replicate our existing email template but with customizable company names and recipient addresses, while keeping all other data generic but realistic.
+
+## Core Requirements
+
+### 1. **Application Structure**
+- Build a single-page web application
+- Use React with TypeScript
+- Include a clean, professional UI with form inputs and preview functionality
+- Deploy as a standalone internal tool
+
+### 2. **Email Template Replication**
+Use this exact email template structure (DO NOT MODIFY THE STYLING OR DATA):
+
+```typescript
+import { Button, Html, Markdown, Section } from "@react-email/components";
+
+// Keep these exact styles
+const containerStyles = {
+  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+  lineHeight: '1.4',
+  color: '#374151'
+};
+
+const customStyles = {
+  h1: {
+    color: '#1f2937',
+    fontSize: '24px',
+    fontWeight: '600',
+    lineHeight: '1.25',
+    margin: '0 0 16px 0'
+  },
+  p: {
+    margin: '0 0 16px 0'
+  },
+  strong: {
+    fontWeight: '600'
+  }
+};
+
+export function DemoDigestEmail({ companyName }: { companyName: string }) {
+  return (
+    <Html lang="en" dir="ltr">
+      <Markdown
+        markdownCustomStyles={customStyles}
+        markdownContainerStyles={containerStyles}
+      >
+        {`
+<img src="https://app.rulebase.co/img/rulebase-logo.png" alt="Rulebase" width="64" height="64" />
+
+# Account closure report for ${companyName} - July 2025
+
+In July 2025, there were **115** account closure requests. The key reasons for requesting closure were:
+
+1. **Unspecified reasons** (~35%) - Customers requesting closure without providing detailed explanations
+2. **Banking consolidation** (~25%) - Customers closing accounts because they have multiple banks and want to reduce the number of accounts they maintain
+3. **Account restrictions/liens** (~20%) - Customer frustration with account restrictions due to erroneous transfer disputes
+4. **Account setup issues** (~10%) - Problems completing account creation, BVN/NIN mismatches, or profile setup
+5. **Service dissatisfaction** (~7%) - General dissatisfaction with customer service and resolution processes
+6. **Overdraft disputes** (~3%) - Issues with overdraft interest calculations and repayment terms
+
+Click "View full report" to see all customer interactions.
+        `}
+      </Markdown>
+
+      <Section
+        style={{
+          textAlign: "center",
+          marginTop: "-24px",
+        }}
+      >
+        <Button
+          href="https://app.rulebase.co/reports/demo"
+          style={{
+            background: "linear-gradient(135deg, #374151 0%, #4b5563 100%)",
+            boxShadow: "0 4px 12px rgba(55, 65, 81, 0.4)",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            textDecoration: "none",
+            fontWeight: "600",
+            fontSize: "16px",
+            fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+          }}
+        >
+          View full report
+        </Button>
+      </Section>
+    </Html>
+  );
+}
+```
+
+### 3. **User Interface Requirements**
+Create a form with these exact fields:
+- **Company Name** (text input) - This replaces "Kuda" in the email template
+- **Recipient Email** (email input) - Where to send the demo email
+- **Preview Button** - Shows email preview before sending
+- **Send Email Button** - Sends the email via Resend
+
+### 4. **Email Integration with Resend**
+- Use Resend API for email delivery
+- I will provide the API key separately
+- Email configuration:
+  - From: "Rulebase Reports <reports@rulebase.co>"
+  - Subject: "Customer Digest Report - [Company Name]"
+  - Use the exact email template above with only the company name variable changed
+
+### 5. **Specific Implementation Details**
+
+**Form Validation:**
+- Company name: Required, minimum 2 characters
+- Email: Valid email format required
+
+**Email Preview:**
+- Show exactly how the email will look before sending
+- Use the same styling as the actual email
+
+**Success/Error Handling:**
+- Show success message when email is sent
+- Display clear error messages for failures
+- Include loading states during email sending
+
+### 6. **Technical Specifications**
+- Use React 18+ with TypeScript
+- Include @react-email/components for email rendering
+- Implement proper error boundaries
+- Use Tailwind CSS for the UI (not the email template)
+- Make it responsive for desktop use
+
+### 7. **Security & Environment**
+- Store Resend API key as environment variable
+- Validate all inputs before sending
+- Rate limit email sending (max 5 emails per minute)
+
+### 8. **File Structure**
+```
+/components
+  /EmailPreview.tsx
+  /EmailForm.tsx
+  /DemoDigestEmail.tsx
+/pages
+  /index.tsx
+/api
+  /send-email.ts
+/utils
+  /resend-client.ts
+```
+
+## Expected Output
+A working web application that:
+1. Takes a company name and recipient email
+2. Generates a preview of the customer digest email with that company name
+3. Sends the email via Resend when the user clicks "Send"
+4. Maintains the exact styling and content structure of our existing template
+5. Only changes the company name in the header (from "Kuda" to the input company name)
+
+## Important Notes
+- DO NOT modify any of the data, statistics, or content beyond the company name
+- Keep the exact same styling, colors, and layout
+- The email should look identical to our real customer digests except for the company name
+- This is for demo purposes only - the data should remain static and generic
+
+---
+
+Please build this exactly as specified, ensuring the email template matches our existing design perfectly while only allowing customization of the company name and recipient email address.
