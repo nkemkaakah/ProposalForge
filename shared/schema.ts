@@ -37,6 +37,8 @@ export const insertEmailLogSchema = createInsertSchema(emailLogs).pick({
 export const sendEmailSchema = z.object({
   companyName: z.string().min(2, "Company name must be at least 2 characters"),
   recipientEmail: z.string().email("Please enter a valid email address"),
+  bannerImageUrl: z.string().url().optional().or(z.literal('')),
+  chartImageUrl: z.string().url().optional().or(z.literal('')),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

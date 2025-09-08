@@ -7,11 +7,13 @@ export default function Home() {
   const [previewData, setPreviewData] = useState<{
     companyName: string;
     recipientEmail: string;
+    bannerImageUrl?: string;
+    chartImageUrl?: string;
   } | null>(null);
 
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
-  const handlePreview = (data: { companyName: string; recipientEmail: string }) => {
+  const handlePreview = (data: { companyName: string; recipientEmail: string; bannerImageUrl?: string; chartImageUrl?: string }) => {
     setPreviewData(data);
     setIsPreviewOpen(true);
   };
@@ -49,6 +51,8 @@ export default function Home() {
         isOpen={isPreviewOpen}
         onClose={handleClosePreview}
         companyName={previewData?.companyName || ""}
+        bannerImageUrl={previewData?.bannerImageUrl}
+        chartImageUrl={previewData?.chartImageUrl}
       />
     </div>
   );

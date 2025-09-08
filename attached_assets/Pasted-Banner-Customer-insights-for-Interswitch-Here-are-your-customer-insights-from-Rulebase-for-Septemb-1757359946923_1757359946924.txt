@@ -1,0 +1,211 @@
+Banner
+Customer insights for Interswitch
+Here are your customer insights from Rulebase for September 1, 2025 - September 7, 2025.
+
+This week:
+
+We evaluated 928 total tickets (5387 total chats, calls, and emails)
+The average QA score was 95/100 (+1 point from last week)
+Customers reported 434 complaints about Spectranet payment issues (17%), school fee payment problems (14%), and flight ticket payment issues (11%)
+Customers reported 588 service issues with missing Spectranet credits (24%), Quickteller payment failures (15%), and delayed school fee payments (8%)
+Customers reported 8 product issues with loan request failures and account verification problems
+
+
+Complaints
+There were 434 complaints this week with 5 high-risk and 429 medium-risk.
+
+These were the most frequent complaints:
+
+75 (17%) were Spectranet payment issues. For example, Ike Okeke (in progress) explicitly escalated an unresolved ₦12,300 Spectranet payment issue to the support team.
+60 (14%) were school fee payment issues. For example, GODWIN SHITTU (in progress) paid ₦275,300 resit fee but hasn't received service value yet on Afe Babalola University portal.
+47 (11%) were flight ticket payment issues. For example, George (resolved) expressed frustration over repeated network issues causing daily transaction delays with ₦320,000 Ibom Air flight ticket.
+Top providers mentioned in complaints this week were: Spectranet (75 tickets, 17%), Afe Babalola University (3 tickets, 1%), EEDC (4 tickets, 1%), and WAEC (3 tickets, 1%).
+
+
+
+1. Failed Transaction Debited Within 24 Hours Opay
+Customer: Alibabaabdulmujeeb3
+
+Handling agents: Praise Agboola, Adebumiti Modupe, Janet Olawole, Nancy Iwhiwhu, Angela Ahaneku, Oluwatosin Olanrewaju
+
+Date: September 5, 2025
+
+Freshdesk ticket: #925228
+
+Status: In Progress
+
+Summary:
+
+Customer reported being debited ₦153,650 for a KWASU school payment transaction that failed on September 5th, 2025. Despite multiple follow-ups and confirmation from Interswitch that the transaction failed with "Customer Cancellation" status, the customer has not received a reversal. The case has been escalated to Opay for investigation, with multiple reminder emails sent to the bank, but the customer continues to follow up daily seeking resolution of the debited amount.
+
+"Am I going to credit back"
+
+2. Pending Flight Transaction
+Customer: George
+
+Handling agents: Matthew Sikiru, Awotunde AdebayoChristopher, Victoria Adebayo
+
+Date: September 4, 2025
+
+Freshdesk ticket: #925039
+
+Status: Resolved
+
+Summary:
+
+Customer experienced repeated network issues causing transaction delays, with the same problem occurring the previous day. The ₦320,000 Ibom Air flight ticket transaction remained pending beyond the expected timeframe, leading to significant customer frustration. The transaction was eventually confirmed successful and value was provided by Ibom Air, but the customer expressed ongoing concerns about network reliability issues affecting daily transactions.
+
+"You guys should work on your network because it's becoming everyday thing. Same thing happened yesterday."
+
+3. Urgent Complaint: Prolonged Inactivity of My Paypoint Accounts – No Response for Over 5 Months
+Customer: Abdulhakim Muhammad
+
+Handling agent: Ruth Ayomide Joseph
+
+Date: September 2, 2025
+
+Freshdesk ticket: #923879
+
+Status: In progress
+
+Summary:
+
+Customer reported that their Paypoint accounts have been inactive for over five months despite submitting all required documents. This prolonged inactivity has disrupted their business operations and damaged their credibility, leading to high frustration and a perception of unprofessional service. The agent responded empathetically and confirmed receipt and escalation of documents.
+
+"I find this level of neglect extremely unprofessional, especially considering how long this matter has been left unattended. As a registered agent relying on this service, the continuous delay has not only disrupted my operations but also affected my business credibility."
+
+4. Unresolved Payment – Spectranet Account Top-Up ₦12,300
+Customer: Ike Okeke
+
+Handling agent: Chinomso Egbuhuzor
+
+Date: September 4, 2025
+
+Freshdesk ticket: #924587
+
+Status: In Progress
+
+Summary:
+
+Customer made a ₦12,300 payment via Opay to top up their Spectranet account, but the transaction failed and was not reflected on Spectranet's platform. Despite multiple contacts, the issue remains unresolved, with the customer awaiting a reversal of funds. The agent has acknowledged the failure and is coordinating with Opay for a refund, but no resolution has been confirmed yet. The customer explicitly escalated the concern to the support team for confirmation and resolution.
+
+"I am writing to escalate an unresolved payment issue regarding my Spectranet account."
+
+5. Case Follow Up - 922726
+Customer: Folorunsho Bolakale
+
+Handling agent: Matthew Sikiru
+
+Date: September 1, 2025
+
+Freshdesk ticket: #923188
+
+Status: Resolved
+
+Summary:
+
+Customer is highly frustrated with the handling of their support ticket and has threatened to escalate the issue publicly on social media due to perceived lack of resolution or timely response. The agent informed the customer that the primary ticket (ID: 922726) remains active and is being worked on, but closed the current ticket, which the customer found unsatisfactory. The customer expressed extreme frustration with the support process.
+
+"Seriously I will drag you on social media"
+
+View all complaints this week →
+
+Service issues
+
+
+There were 588 service issues this week with 1 high-risk, 547 medium-risk, and 40 low-risk.
+
+These were the most frequent service issues:
+
+142 (24%) were missing Spectranet credits. For example, Official donmosco (in progress) customer payment of N12,000 not credited with reversal pending investigation.
+89 (15%) were Quickteller payment failures. For example, Rukkytots (in progress) experienced delayed Quickteller payment verification causing urgent dissatisfaction with ₦35,109 Spectranet payment.
+45 (8%) were delayed school fee payments. For example, GODWIN SHITTU (in progress) paid ₦275,300 resit fee but hasn't received service value yet on Afe Babalola University portal.
+Top providers mentioned in service issues this week were: Spectranet (142 tickets, 24%), Afe Babalola University (25 tickets, 4%), and EEDC (15 tickets, 3%).
+
+1. Delayed School Fee Payment - Afe Babalola University
+Customer: GODWIN SHITTU
+
+Date: September 6, 2025
+
+Freshdesk ticket: #925979
+
+Status: In Progress
+
+Summary:
+
+Customer completed a payment of ₦275,300 for a resit fee at Afe Babalola University, which was successfully processed and approved by the financial institution. However, the customer reports not receiving the corresponding service or credit for this transaction. The agent acknowledged the issue, apologized, and escalated the matter to the biller for resolution, providing proof of payment and requesting urgent attention.
+
+"I made some transactions on my school portal(Afe Babalola university) but it hasn't reflected yet on my portal, the transaction ID is RES41126258322. The total amount I sent is #275400."
+
+2. Missing Spectranet Credits - Customer Cancellation
+Customer: Official donmosco
+
+Date: September 6, 2025
+
+Freshdesk ticket: #925995
+
+Status: In Progress
+
+Summary:
+
+Customer paid N12,000 to their Spectranet account via Web Pay but the transaction was marked as 'Customer Cancellation' and the account was not credited. The customer has not yet received a reversal and has contacted Interswitch for resolution. The agent acknowledged the issue, apologized, and confirmed that a reversal request has been sent to Opay.
+
+"I made payment of N12,000 to my spectranet account [REDACTED] via web pay reference no PAYMENT_12736463 since morning till now I've not been credited"
+
+3. Quickteller Payment Verification Delay
+Customer: Rukkytots
+
+Date: September 6, 2025
+
+Freshdesk ticket: #925986
+
+Status: In Progress
+
+Summary:
+
+Customer was debited ₦35,109 for a Quickteller transaction, but the payment status remained stuck on "verifying payment" for over 10 minutes, causing concern due to the time-sensitive nature of the transaction. The agent acknowledged the issue and apologized but advised a 24-48 hour resolution timeframe, which the customer found too long and expressed urgency. The transaction was later confirmed as failed and reversal was initiated.
+
+"i was debited from my account but quickteller has been saying verifying payment for over 10mins now"
+
+View all service issues this week →
+
+Product issues
+There were 8 product issues this week with 5 medium-risk and 3 low-risk.
+
+1. Loan Request - Opay Account Verification Failure
+Customer: Gamaliel Hyeinmen
+
+Date: September 5, 2025
+
+Freshdesk ticket: #925370
+
+Summary:
+
+Customer is experiencing a verification failure with their Opay account on the Quickteller app, preventing access to a loan offer they urgently need. The agent provided a thorough and professional response, advising the customer to retry due to possible network issues and to try another bank card if the problem persists.
+
+"Please I am trying to get a loan on the app, I got an offer but it keeps saying that it cannot verify my opay account and I urgently need this money. I cannot get a different ATM Card for another local bank account till Monday and the urgency cannot wait till Monday."
+
+2. Loan Request - System Cannot Reach Customer Service
+Customer: Charles Kayode
+
+Date: September 5, 2025
+
+Freshdesk ticket: #925285
+
+Summary:
+
+Customer reports repeated failures when attempting to use the loan request feature, receiving messages that the system cannot reach customer service or their banks. The agent acknowledged the issue, attributing it to a possible network glitch and informed the customer that the engineering team is actively working on a fix.
+
+"Why can't the request loan work for me? It kept saying can't reach customer service if my banks"
+
+View all product issues this week →
+
+Scorecard performance
+
+
+Based on this week's interactions, here are the average scorecard criteria scores (from lowest to highest):
+
+Technical Skills: 95/100 (no change from last week)
+Soft Skills: 96/100 (-2 points from last week)
+Process & Regulatory Compliance: 98/100 (no change from last week)
+© 2025 Rulebase. All rights reserved.

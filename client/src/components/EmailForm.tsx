@@ -13,6 +13,8 @@ import { Loader2 } from "lucide-react";
 const formSchema = z.object({
   companyName: z.string().min(2, "Company name must be at least 2 characters"),
   recipientEmail: z.string().email("Please enter a valid email address"),
+  bannerImageUrl: z.string().url().optional().or(z.literal('')),
+  chartImageUrl: z.string().url().optional().or(z.literal('')),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -30,6 +32,8 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
     defaultValues: {
       companyName: "",
       recipientEmail: "",
+      bannerImageUrl: "",
+      chartImageUrl: "",
     },
   });
 
@@ -122,46 +126,92 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-      {/* Input Fields Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Company Name Input */}
-        <div>
-          <Label htmlFor="companyName" className="block text-sm font-medium text-foreground mb-2">
-            Company Name
-          </Label>
-          <Input
-            id="companyName"
-            type="text"
-            placeholder="Demo Company"
-            {...form.register("companyName")}
-            data-testid="input-company-name"
-            className="w-full"
-          />
-          {form.formState.errors.companyName && (
-            <p className="text-destructive text-sm mt-1">
-              {form.formState.errors.companyName.message}
-            </p>
-          )}
+      {/* Input Fields */}
+      <div className="space-y-6">
+        {/* Required Fields Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Company Name Input */}
+          <div>
+            <Label htmlFor="companyName" className="block text-sm font-medium text-foreground mb-2">
+              Company Name
+            </Label>
+            <Input
+              id="companyName"
+              type="text"
+              placeholder="Demo Company"
+              {...form.register("companyName")}
+              data-testid="input-company-name"
+              className="w-full"
+            />
+            {form.formState.errors.companyName && (
+              <p className="text-destructive text-sm mt-1">
+                {form.formState.errors.companyName.message}
+              </p>
+            )}
+          </div>
+
+          {/* Recipient Email Input */}
+          <div>
+            <Label htmlFor="recipientEmail" className="block text-sm font-medium text-foreground mb-2">
+              Recipient Email
+            </Label>
+            <Input
+              id="recipientEmail"
+              type="email"
+              placeholder="nkemkaomeiza@gmail.com"
+              {...form.register("recipientEmail")}
+              data-testid="input-recipient-email"
+              className="w-full"
+            />
+            {form.formState.errors.recipientEmail && (
+              <p className="text-destructive text-sm mt-1">
+                {form.formState.errors.recipientEmail.message}
+              </p>
+            )}
+          </div>
         </div>
 
-        {/* Recipient Email Input */}
-        <div>
-          <Label htmlFor="recipientEmail" className="block text-sm font-medium text-foreground mb-2">
-            Recipient Email
-          </Label>
-          <Input
-            id="recipientEmail"
-            type="email"
-            placeholder="nkemkaomeiza@gmail.com"
-            {...form.register("recipientEmail")}
-            data-testid="input-recipient-email"
-            className="w-full"
-          />
-          {form.formState.errors.recipientEmail && (
-            <p className="text-destructive text-sm mt-1">
-              {form.formState.errors.recipientEmail.message}
-            </p>
-          )}
+        {/* Optional Image Fields Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Banner Image URL */}
+          <div>
+            <Label htmlFor="bannerImageUrl" className="block text-sm font-medium text-foreground mb-2">
+              Banner Image URL <span className="text-muted-foreground text-xs">(optional)</span>
+            </Label>
+            <Input
+              id="bannerImageUrl"
+              type="url"
+              placeholder="https://example.com/banner.png"
+              {...form.register("bannerImageUrl")}
+              data-testid="input-banner-image"
+              className="w-full"
+            />
+            {form.formState.errors.bannerImageUrl && (
+              <p className="text-destructive text-sm mt-1">
+                {form.formState.errors.bannerImageUrl.message}
+              </p>
+            )}
+          </div>
+
+          {/* Chart Image URL */}
+          <div>
+            <Label htmlFor="chartImageUrl" className="block text-sm font-medium text-foreground mb-2">
+              Chart Image URL <span className="text-muted-foreground text-xs">(optional)</span>
+            </Label>
+            <Input
+              id="chartImageUrl"
+              type="url"
+              placeholder="https://example.com/chart.png"
+              {...form.register("chartImageUrl")}
+              data-testid="input-chart-image"
+              className="w-full"
+            />
+            {form.formState.errors.chartImageUrl && (
+              <p className="text-destructive text-sm mt-1">
+                {form.formState.errors.chartImageUrl.message}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
