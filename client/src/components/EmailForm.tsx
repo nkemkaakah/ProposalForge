@@ -13,12 +13,20 @@ import { Loader2 } from "lucide-react";
 const formSchema = z.object({
   companyName: z.string().min(2, "Company name must be at least 2 characters"),
   recipientEmail: z.string().email("Please enter a valid email address"),
-  bannerImageUrl: z.string().url().optional().or(z.literal("")),
-  chartImageUrl: z.string().url().optional().or(z.literal("")),
-  dateRange: z.string().optional().or(z.literal("")),
-  totalTickets: z.string().optional().or(z.literal("")),
-  qaScore: z.string().optional().or(z.literal("")),
-  totalInteractions: z.string().optional().or(z.literal("")),
+  
+  // Optional customer names for personalization
+  customerName1: z.string().optional().or(z.literal('')),
+  customerName2: z.string().optional().or(z.literal('')),
+  customerName3: z.string().optional().or(z.literal('')),
+  
+  // Optional images - support both URLs and uploads
+  bannerImageUrl: z.string().optional().or(z.literal('')),
+  chartImageUrl: z.string().optional().or(z.literal('')),
+  logoImageUrl: z.string().optional().or(z.literal('')),
+  complaintChartUrl: z.string().optional().or(z.literal('')),
+  metricsImageUrl: z.string().optional().or(z.literal('')),
+  scorecardImageUrl: z.string().optional().or(z.literal('')),
+  serviceIssuesImageUrl: z.string().optional().or(z.literal(''))
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -36,12 +44,16 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
     defaultValues: {
       companyName: "",
       recipientEmail: "",
+      customerName1: "",
+      customerName2: "", 
+      customerName3: "",
       bannerImageUrl: "",
       chartImageUrl: "",
-      dateRange: "September 1, 2025 - September 7, 2025",
-      totalTickets: "928",
-      qaScore: "95",
-      totalInteractions: "5387",
+      logoImageUrl: "",
+      complaintChartUrl: "",
+      metricsImageUrl: "",
+      scorecardImageUrl: "",
+      serviceIssuesImageUrl: "",
     },
   });
 
@@ -188,119 +200,166 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
           </div>
         </div>
 
-        {/* Data Customization Fields */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Date Range */}
-          <div>
-            <Label htmlFor="dateRange" className="block text-sm font-medium text-foreground mb-2">
-              Report Date Range <span className="text-muted-foreground text-xs">(optional)</span>
-            </Label>
-            <Input
-              id="dateRange"
-              type="text"
-              placeholder="September 1, 2025 - September 7, 2025"
-              {...form.register("dateRange")}
-              data-testid="input-date-range"
-              className="w-full"
-            />
-          </div>
-
-          {/* Total Tickets */}
-          <div>
-            <Label htmlFor="totalTickets" className="block text-sm font-medium text-foreground mb-2">
-              Total Tickets <span className="text-muted-foreground text-xs">(optional)</span>
-            </Label>
-            <Input
-              id="totalTickets"
-              type="text"
-              placeholder="928"
-              {...form.register("totalTickets")}
-              data-testid="input-total-tickets"
-              className="w-full"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* QA Score */}
-          <div>
-            <Label htmlFor="qaScore" className="block text-sm font-medium text-foreground mb-2">
-              QA Score <span className="text-muted-foreground text-xs">(optional)</span>
-            </Label>
-            <Input
-              id="qaScore"
-              type="text"
-              placeholder="95"
-              {...form.register("qaScore")}
-              data-testid="input-qa-score"
-              className="w-full"
-            />
-          </div>
-
-          {/* Total Interactions */}
-          <div>
-            <Label htmlFor="totalInteractions" className="block text-sm font-medium text-foreground mb-2">
-              Total Interactions <span className="text-muted-foreground text-xs">(optional)</span>
-            </Label>
-            <Input
-              id="totalInteractions"
-              type="text"
-              placeholder="5387"
-              {...form.register("totalInteractions")}
-              data-testid="input-total-interactions"
-              className="w-full"
-            />
+        {/* Customer Names for Personalization */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-medium text-foreground">Customer Names (Optional)</h3>
+          <p className="text-sm text-muted-foreground">Add customer names to personalize the email stories</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <Label htmlFor="customerName1" className="block text-sm font-medium text-foreground mb-2">
+                Customer 1 Name
+              </Label>
+              <Input
+                id="customerName1"
+                type="text"
+                placeholder="Alex Johnson"
+                {...form.register("customerName1")}
+                data-testid="input-customer-name-1"
+                className="w-full"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="customerName2" className="block text-sm font-medium text-foreground mb-2">
+                Customer 2 Name
+              </Label>
+              <Input
+                id="customerName2"
+                type="text"
+                placeholder="Sarah Mitchell"
+                {...form.register("customerName2")}
+                data-testid="input-customer-name-2"
+                className="w-full"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="customerName3" className="block text-sm font-medium text-foreground mb-2">
+                Customer 3 Name
+              </Label>
+              <Input
+                id="customerName3"
+                type="text"
+                placeholder="David Chen"
+                {...form.register("customerName3")}
+                data-testid="input-customer-name-3"
+                className="w-full"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Optional Image Fields Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Banner Image URL */}
-          <div>
-            <Label
-              htmlFor="bannerImageUrl"
-              className="block text-sm font-medium text-foreground mb-2"
-            >
-              Banner Image URL{" "}
-              <span className="text-muted-foreground text-xs">(optional)</span>
-            </Label>
-            <Input
-              id="bannerImageUrl"
-              type="url"
-              placeholder="Enter Banner Image URL"
-              {...form.register("bannerImageUrl")}
-              data-testid="input-banner-image"
-              className="w-full"
-            />
-            {form.formState.errors.bannerImageUrl && (
-              <p className="text-destructive text-sm mt-1">
-                {form.formState.errors.bannerImageUrl.message}
-              </p>
-            )}
-          </div>
+        {/* Images Section */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-medium text-foreground">Images (Optional)</h3>
+          <p className="text-sm text-muted-foreground">Add images to customize your email. Paste URLs or upload files.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Banner/Header Image */}
+            <div>
+              <Label htmlFor="bannerImageUrl" className="block text-sm font-medium text-foreground mb-2">
+                Header/Banner Image
+              </Label>
+              <Input
+                id="bannerImageUrl"
+                type="url"
+                placeholder="Paste image URL or upload"
+                {...form.register("bannerImageUrl")}
+                data-testid="input-banner-image"
+                className="w-full"
+              />
+            </div>
 
-          {/* Chart Image URL */}
-          <div>
-            <Label
-              htmlFor="chartImageUrl"
-              className="block text-sm font-medium text-foreground mb-2"
-            >
-              Chart Image URL{" "}
-              <span className="text-muted-foreground text-xs">(optional)</span>
-            </Label>
-            <Input
-              id="chartImageUrl"
-              type="url"
-              placeholder="Enter Chart Image URL"
-              {...form.register("chartImageUrl")}
-              data-testid="input-chart-image"
-              className="w-full"
-            />
-            {form.formState.errors.chartImageUrl && (
-              <p className="text-destructive text-sm mt-1">
-                {form.formState.errors.chartImageUrl.message}
-              </p>
-            )}
+            {/* Company Logo */}
+            <div>
+              <Label htmlFor="logoImageUrl" className="block text-sm font-medium text-foreground mb-2">
+                Company Logo
+              </Label>
+              <Input
+                id="logoImageUrl"
+                type="url"
+                placeholder="Paste logo URL or upload"
+                {...form.register("logoImageUrl")}
+                data-testid="input-logo-image"
+                className="w-full"
+              />
+            </div>
+            
+            {/* Metrics Chart */}
+            <div>
+              <Label htmlFor="metricsImageUrl" className="block text-sm font-medium text-foreground mb-2">
+                Metrics/Chart Image
+              </Label>
+              <Input
+                id="metricsImageUrl"
+                type="url"
+                placeholder="Paste chart URL or upload"
+                {...form.register("metricsImageUrl")}
+                data-testid="input-metrics-image"
+                className="w-full"
+              />
+            </div>
+            
+            {/* Chart Image URL */}
+            <div>
+              <Label htmlFor="chartImageUrl" className="block text-sm font-medium text-foreground mb-2">
+                Additional Chart
+              </Label>
+              <Input
+                id="chartImageUrl"
+                type="url"
+                placeholder="Paste chart URL or upload"
+                {...form.register("chartImageUrl")}
+                data-testid="input-chart-image"
+                className="w-full"
+              />
+            </div>
+            
+            {/* Complaint Chart */}
+            <div>
+              <Label htmlFor="complaintChartUrl" className="block text-sm font-medium text-foreground mb-2">
+                Complaints Breakdown Chart
+              </Label>
+              <Input
+                id="complaintChartUrl"
+                type="url"
+                placeholder="Paste complaints chart URL or upload"
+                {...form.register("complaintChartUrl")}
+                data-testid="input-complaint-chart"
+                className="w-full"
+              />
+            </div>
+            
+            {/* Scorecard Performance Image */}
+            <div>
+              <Label htmlFor="scorecardImageUrl" className="block text-sm font-medium text-foreground mb-2">
+                Scorecard Performance Image
+              </Label>
+              <Input
+                id="scorecardImageUrl"
+                type="url"
+                placeholder="Paste scorecard image URL or upload"
+                {...form.register("scorecardImageUrl")}
+                data-testid="input-scorecard-image"
+                className="w-full"
+              />
+            </div>
+            
+            {/* Service Issues Image */}
+            <div>
+              <Label htmlFor="serviceIssuesImageUrl" className="block text-sm font-medium text-foreground mb-2">
+                Service Issues Chart
+              </Label>
+              <Input
+                id="serviceIssuesImageUrl"
+                type="url"
+                placeholder="Paste service issues chart URL or upload"
+                {...form.register("serviceIssuesImageUrl")}
+                data-testid="input-service-issues-image"
+                className="w-full"
+              />
+            </div>
           </div>
         </div>
       </div>

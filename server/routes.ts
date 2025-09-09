@@ -53,17 +53,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const { companyName, recipientEmail, bannerImageUrl, chartImageUrl, dateRange, totalTickets, qaScore, totalInteractions } = validation.data;
+      const { 
+        companyName, 
+        recipientEmail, 
+        customerName1,
+        customerName2, 
+        customerName3,
+        bannerImageUrl, 
+        chartImageUrl,
+        logoImageUrl,
+        complaintChartUrl,
+        metricsImageUrl,
+        scorecardImageUrl,
+        serviceIssuesImageUrl 
+      } = validation.data;
 
       // Generate email HTML using the same React component as preview
       const emailHTML = await render(DemoDigestEmail({
         companyName,
+        customerName1,
+        customerName2,
+        customerName3,
         bannerImageUrl,
         chartImageUrl,
-        dateRange,
-        totalTickets,
-        qaScore,
-        totalInteractions
+        logoImageUrl,
+        complaintChartUrl,
+        metricsImageUrl,
+        scorecardImageUrl,
+        serviceIssuesImageUrl
       }));
 
       // Send email via Resend
@@ -122,15 +139,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const { companyName, bannerImageUrl, chartImageUrl, dateRange, totalTickets, qaScore, totalInteractions } = validation.data;
+      const { 
+        companyName, 
+        customerName1,
+        customerName2, 
+        customerName3,
+        bannerImageUrl, 
+        chartImageUrl,
+        logoImageUrl,
+        complaintChartUrl,
+        metricsImageUrl,
+        scorecardImageUrl,
+        serviceIssuesImageUrl 
+      } = validation.data;
       const emailHTML = await render(DemoDigestEmail({
         companyName,
+        customerName1,
+        customerName2,
+        customerName3,
         bannerImageUrl,
         chartImageUrl,
-        dateRange,
-        totalTickets,
-        qaScore,
-        totalInteractions
+        logoImageUrl,
+        complaintChartUrl,
+        metricsImageUrl,
+        scorecardImageUrl,
+        serviceIssuesImageUrl
       }));
 
       res.json({ html: emailHTML });

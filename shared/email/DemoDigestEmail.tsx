@@ -2,22 +2,30 @@ import React from 'react';
 
 export interface DemoDigestEmailProps {
   companyName: string;
+  customerName1?: string;
+  customerName2?: string;
+  customerName3?: string;
   bannerImageUrl?: string;
   chartImageUrl?: string;
-  dateRange?: string;
-  totalTickets?: string;
-  qaScore?: string;
-  totalInteractions?: string;
+  logoImageUrl?: string;
+  complaintChartUrl?: string;
+  metricsImageUrl?: string;
+  scorecardImageUrl?: string;
+  serviceIssuesImageUrl?: string;
 }
 
 export default function DemoDigestEmail({ 
-  companyName, 
-  bannerImageUrl, 
-  chartImageUrl, 
-  dateRange = "September 1, 2025 - September 7, 2025",
-  totalTickets = "928",
-  qaScore = "95",
-  totalInteractions = "5387"
+  companyName,
+  customerName1 = "Marcus Rivera",
+  customerName2 = "Elena Nakamura", 
+  customerName3 = "Kwame Asante",
+  bannerImageUrl,
+  chartImageUrl,
+  logoImageUrl,
+  complaintChartUrl,
+  metricsImageUrl,
+  scorecardImageUrl,
+  serviceIssuesImageUrl
 }: DemoDigestEmailProps) {
   const containerStyles = {
     padding: '0',
@@ -175,7 +183,7 @@ export default function DemoDigestEmail({
           </div>
           <div style={{ opacity: 0.6 }}>
             <img 
-              src={bannerImageUrl || "https://via.placeholder.com/200x150/ffffff/1f2937?text=📊"} 
+              src={bannerImageUrl || logoImageUrl || "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80"} 
               alt="Report Visual" 
               style={{ width: '200px', height: 'auto', borderRadius: '8px' }}
             />
@@ -189,45 +197,35 @@ export default function DemoDigestEmail({
         </h1>
         
         <p style={textStyle}>
-          Here are your customer insights from Rulebase for <strong style={strongStyle}>{dateRange}</strong>.
+          Here are your customer insights from {companyName} for <strong style={strongStyle}>October 15, 2025 - October 21, 2025</strong>.
         </p>
         
         <p style={textStyle}>This week:</p>
         
         <ul style={{ ...textStyle, paddingLeft: '20px' }}>
-          <li style={{ marginBottom: '8px' }}>We evaluated <strong style={strongStyle}>{totalTickets} total tickets</strong> ({totalInteractions} total chats, calls, and emails)</li>
-          <li style={{ marginBottom: '8px' }}>The average QA score was <strong style={strongStyle}>{qaScore}/100</strong> (<strong style={strongStyle}>+1</strong> point from last week)</li>
-          <li style={{ marginBottom: '8px' }}>Customers reported <strong style={strongStyle}>434 complaints</strong> about <strong style={strongStyle}>Spectranet payment issues</strong> (17%), <strong style={strongStyle}>school fee payment problems</strong> (14%), and <strong style={strongStyle}>flight ticket payment issues</strong> (11%)</li>
-          <li style={{ marginBottom: '8px' }}>Customers reported <strong style={strongStyle}>588 service issues</strong> with <strong style={strongStyle}>missing Spectranet credits</strong> (24%), <strong style={strongStyle}>Quickteller payment failures</strong> (15%), and <strong style={strongStyle}>delayed school fee payments</strong> (8%)</li>
-          <li style={{ marginBottom: '8px' }}>Customers reported <strong style={strongStyle}>8 product issues</strong> with <strong style={strongStyle}>loan request failures</strong> and <strong style={strongStyle}>account verification problems</strong></li>
+          <li style={{ marginBottom: '8px' }}>We evaluated <strong style={strongStyle}>1,247 total tickets</strong> (6,892 total chats, calls, and emails)</li>
+          <li style={{ marginBottom: '8px' }}>The average QA score was <strong style={strongStyle}>87/100</strong> (<strong style={strongStyle}>-3</strong> points from last week)</li>
+          <li style={{ marginBottom: '8px' }}>Customers reported <strong style={strongStyle}>623 complaints</strong> about <strong style={strongStyle}>crypto withdrawal delays</strong> (22%), <strong style={strongStyle}>KYC verification issues</strong> (18%), and <strong style={strongStyle}>fee discrepancies</strong> (15%)</li>
+          <li style={{ marginBottom: '8px' }}>Customers reported <strong style={strongStyle}>741 service issues</strong> with <strong style={strongStyle}>API downtime</strong> (31%), <strong style={strongStyle}>security authentication</strong> (19%), and <strong style={strongStyle}>payment gateway errors</strong> (12%)</li>
+          <li style={{ marginBottom: '8px' }}>Customers reported <strong style={strongStyle}>14 product issues</strong> with <strong style={strongStyle}>investment dashboard</strong> and <strong style={strongStyle}>multi-currency wallet sync</strong></li>
         </ul>
 
-        {/* Key Metrics Chart */}
-        <div style={chartBoxStyle}>
-          <div style={metricBoxStyle}>
-            <div style={metricLabelStyle}>AVERAGE QA SCORE</div>
-            <span style={bigNumberStyle}>{qaScore}</span>
-            <div style={{ fontSize: '12px', color: '#10b981' }}>📈 +1</div>
-          </div>
-          <div style={metricBoxStyle}>
-            <div style={metricLabelStyle}>TICKETS REVIEWED</div>
-            <span style={bigNumberStyle}>{totalTickets}</span>
-          </div>
-          <div style={metricBoxStyle}>
-            <div style={metricLabelStyle}>CALLS, CHATS AND EMAILS REVIEWED</div>
-            <span style={bigNumberStyle}>{totalInteractions}</span>
-          </div>
+        {/* Scorecard Performance (Dynamic Image) */}
+        <div style={{ textAlign: 'center', margin: '24px 0' }}>
+          <img
+            src={scorecardImageUrl || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=400&q=80"}
+            alt="Scorecard Performance"
+            style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }}
+          />
         </div>
 
-        {chartImageUrl && (
         <div style={{ textAlign: 'center', margin: '24px 0' }}>
             <img 
-              src={chartImageUrl as string} 
+              src={chartImageUrl || metricsImageUrl || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=400&q=80"} 
               alt="Weekly Overview Chart" 
               style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }}
             />
           </div>
-        )}
 
         <hr style={hrStyle} />
 
@@ -235,98 +233,88 @@ export default function DemoDigestEmail({
         <h2 style={h2Style}>Complaints</h2>
         
         <p style={textStyle}>
-          There were <strong style={strongStyle}>434 complaints</strong> this week with <strong style={strongStyle}>5 high-risk</strong> and <strong style={strongStyle}>429 medium-risk</strong>.
+          There were <strong style={strongStyle}>623 complaints</strong> this week with <strong style={strongStyle}>9 high-risk</strong> and <strong style={strongStyle}>614 medium-risk</strong>.
         </p>
         
         <p style={textStyle}>These were the most frequent complaints:</p>
         
         <ul style={{ ...textStyle, paddingLeft: '20px' }}>
-          <li style={{ marginBottom: '8px' }}><strong style={strongStyle}>75 (17%)</strong> were <strong style={strongStyle}>Spectranet payment issues</strong>. For example, <a href="#" style={linkStyle}>Ike Okeke</a></li>
-          <li style={{ marginBottom: '8px' }}><strong style={strongStyle}>60 (14%)</strong> were <strong style={strongStyle}>school fee payment issues</strong>. For example, <a href="#" style={linkStyle}>GODWIN SHITTU</a></li>
-          <li style={{ marginBottom: '8px' }}><strong style={strongStyle}>47 (11%)</strong> were <strong style={strongStyle}>flight ticket payment issues</strong>. For example, <a href="#" style={linkStyle}>George</a></li>
+          <li style={{ marginBottom: '8px' }}><strong style={strongStyle}>137 (22%)</strong> were <strong style={strongStyle}>cryptocurrency withdrawal delays</strong>. For example, <a href="#" style={linkStyle}>{customerName1}</a></li>
+          <li style={{ marginBottom: '8px' }}><strong style={strongStyle}>112 (18%)</strong> were <strong style={strongStyle}>identity verification failures</strong>. For example, <a href="#" style={linkStyle}>{customerName2}</a></li>
+          <li style={{ marginBottom: '8px' }}><strong style={strongStyle}>93 (15%)</strong> were <strong style={strongStyle}>unexpected transaction fees</strong>. For example, <a href="#" style={linkStyle}>{customerName3}</a></li>
         </ul>
 
         <p style={textStyle}>
-          <strong style={strongStyle}>Top providers mentioned in complaints this week were:</strong> Spectranet (75 tickets, 17%), Afe Babalola University (3 tickets, 1%), EEDC (4 tickets, 1%), and WAEC (3 tickets, 1%).
+          <strong style={strongStyle}>Top service categories mentioned in complaints this week were:</strong> Crypto Trading (137 tickets, 22%), KYC Verification (89 tickets, 14%), Fee Management (67 tickets, 11%), and Wallet Services (45 tickets, 7%).
         </p>
 
-        {/* Complaint Categories */}
-        <div style={categoryContainerStyle}>
-          <div style={categoryBoxStyle}>
-            <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>Spectranet payment issues</div>
-            <div style={{ fontSize: '18px', fontWeight: 'bold' }}>75 INTERACTIONS</div>
-            <div style={{ fontSize: '12px' }}>17% OF COMPLAINTS</div>
-          </div>
-          <div style={categoryBoxStyle}>
-            <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>School fees payment issues</div>
-            <div style={{ fontSize: '18px', fontWeight: 'bold' }}>60 INTERACTIONS</div>
-            <div style={{ fontSize: '12px' }}>14% OF COMPLAINTS</div>
-          </div>
-          <div style={categoryBoxStyle}>
-            <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>Flight ticket payment issues</div>
-            <div style={{ fontSize: '18px', fontWeight: 'bold' }}>47 INTERACTIONS</div>
-            <div style={{ fontSize: '12px' }}>11% OF COMPLAINTS</div>
-          </div>
+        {/* Complaint Categories Image */}
+        <div style={{ textAlign: 'center', margin: '24px 0' }}>
+          <img
+            src={complaintChartUrl || "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=300&q=80"}
+            alt="Complaint Categories Breakdown"
+            style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }}
+          />
         </div>
 
         {/* Detailed Complaint Cases */}
         <h3 style={h3Style}>
-          1. <a href="#" style={linkStyle}>Failed Transaction Debited Within 24 Hours Opay</a>
+          1. <a href="#" style={linkStyle}>Bitcoin withdrawal stuck in pending for 72 hours</a>
         </h3>
         
         <div style={ticketDetailStyle}>
-          <p style={textStyle}><strong style={strongStyle}>Customer:</strong> Alibabaabdulmujeeb3</p>
-          <p style={textStyle}><strong style={strongStyle}>Handling agents:</strong> Praise Agboola, Adebumiti Modupe, Janet Olawole, Nancy Iwhiwhu, Angela Ahaneku, Oluwatosin Olanrewaju</p>
-          <p style={textStyle}><strong style={strongStyle}>Date:</strong> September 5, 2025</p>
-          <p style={textStyle}><strong style={strongStyle}>Freshdesk ticket:</strong> <a href="#" style={linkStyle}>#925228</a></p>
+            <p style={textStyle}><strong style={strongStyle}>Customer:</strong> {customerName1}</p>
+          <p style={textStyle}><strong style={strongStyle}>Handling agents:</strong> Jordan Kim, Priya Sharma, Dev Patel, Zara Al-Rashid, Chen Wei, Sofia Gutierrez</p>
+          <p style={textStyle}><strong style={strongStyle}>Date:</strong> October 18, 2025</p>
+          <p style={textStyle}><strong style={strongStyle}>Support ticket:</strong> <a href="#" style={linkStyle}>#CRY-847291</a></p>
           <p style={textStyle}><strong style={strongStyle}>Status:</strong> In Progress</p>
           <p style={textStyle}><strong style={strongStyle}>Summary:</strong></p>
           <p style={textStyle}>
-            Customer reported being debited ₦153,650 for a KWASU school payment transaction that failed on September 5th, 2025. Despite multiple follow-ups and confirmation from Interswitch that the transaction failed with reminder emails sent to the bank, but the customer continues to follow up daily seeking resolution of the debited amount.
+            Customer initiated a Bitcoin withdrawal of 0.24 BTC (approximately $16,800) which has been stuck in pending status for over 72 hours. Network fees were properly deducted but the transaction hasn't been broadcast to the blockchain. The technical team is investigating potential issues with the hot wallet management system.
           </p>
           
           <div style={blockquoteStyle}>
-            <p style={textStyle}>"Am I going to credit back"</p>
+            <p style={textStyle}>"This is unacceptable! I need my Bitcoin NOW. This is my trading capital and every hour costs me money!"</p>
           </div>
         </div>
 
         <h3 style={h3Style}>
-          2. <a href="#" style={linkStyle}>Pending Flight Transaction</a>
+          2. <a href="#" style={linkStyle}>Advanced KYC verification repeatedly failing</a>
         </h3>
         
         <div style={ticketDetailStyle}>
-          <p style={textStyle}><strong style={strongStyle}>Customer:</strong> George</p>
-          <p style={textStyle}><strong style={strongStyle}>Handling agents:</strong> Matthew Sikiru, Awotunde AdebayoChristopher, Victoria Adebayo</p>
-          <p style={textStyle}><strong style={strongStyle}>Date:</strong> September 4, 2025</p>
-          <p style={textStyle}><strong style={strongStyle}>Freshdesk ticket:</strong> <a href="#" style={linkStyle}>#925039</a></p>
+            <p style={textStyle}><strong style={strongStyle}>Customer:</strong> {customerName2}</p>
+          <p style={textStyle}><strong style={strongStyle}>Handling agents:</strong> Aisha Mohammed, Lucas Rodriguez, Maya Singh</p>
+          <p style={textStyle}><strong style={strongStyle}>Date:</strong> October 17, 2025</p>
+          <p style={textStyle}><strong style={strongStyle}>Support ticket:</strong> <a href="#" style={linkStyle}>#KYC-749382</a></p>
           <p style={textStyle}><strong style={strongStyle}>Status:</strong> Resolved</p>
           <p style={textStyle}><strong style={strongStyle}>Summary:</strong></p>
           <p style={textStyle}>
-            Customer experienced repeated network issues causing transaction delays, with the same problem occurring the previous day. The ₦320,000 Ibom Air flight ticket transaction remained pending beyond the expected timeframe, leading to significant customer frustration. The transaction was eventually confirmed successful and value was provided by Ibom Air, but the customer expressed ongoing concerns about network reliability issues affecting daily transactions.
+            Customer attempted Level 3 KYC verification multiple times with high-quality documents but the AI verification system kept rejecting the passport photos due to alleged quality issues. Manual review revealed the automated system had a bias against certain passport formats. Account was manually approved and system updated.
           </p>
           
           <div style={blockquoteStyle}>
-            <p style={textStyle}>"You guys should work on your network because it's becoming everyday thing. Same thing happened yesterday."</p>
+            <p style={textStyle}>"Your system keeps rejecting my official government documents. This is discriminatory and preventing me from accessing higher trading limits."</p>
           </div>
         </div>
 
         <h3 style={h3Style}>
-          3. <a href="#" style={linkStyle}>Urgent Complaint: Prolonged Inactivity of My Paypoint Accounts – No Response for Over 5 Months</a>
+          3. <a href="#" style={linkStyle}>Hidden DeFi Staking Fees Causing Unexpected Losses</a>
         </h3>
         
         <div style={ticketDetailStyle}>
-          <p style={textStyle}><strong style={strongStyle}>Customer:</strong> Abdulhakim Muhammad</p>
-          <p style={textStyle}><strong style={strongStyle}>Handling agent:</strong> Ruth Ayomide Joseph</p>
-          <p style={textStyle}><strong style={strongStyle}>Date:</strong> September 2, 2025</p>
-          <p style={textStyle}><strong style={strongStyle}>Freshdesk ticket:</strong> <a href="#" style={linkStyle}>#923879</a></p>
+          <p style={textStyle}><strong style={strongStyle}>Customer:</strong> {customerName3}</p>
+          <p style={textStyle}><strong style={strongStyle}>Handling agent:</strong> Isabella Thompson</p>
+          <p style={textStyle}><strong style={strongStyle}>Date:</strong> October 16, 2025</p>
+          <p style={textStyle}><strong style={strongStyle}>Support ticket:</strong> <a href="#" style={linkStyle}>#DFI-892445</a></p>
           <p style={textStyle}><strong style={strongStyle}>Status:</strong> In progress</p>
           <p style={textStyle}><strong style={strongStyle}>Summary:</strong></p>
           <p style={textStyle}>
-            Customer reported that their Paypoint accounts have been inactive for over five months despite submitting all required documents. This prolonged inactivity has disrupted their business operations and damaged their credibility, leading to high frustration and a perception of unprofessional service. The agent responded empathetically and confirmed receipt and escalation of documents.
+            Customer staked $50,000 worth of ETH in the platform's DeFi yield farming product but discovered undisclosed gas optimization fees and protocol management charges that reduced their expected returns by 23%. The fee structure was buried in technical documentation rather than clearly displayed during the staking process.
           </p>
           
           <div style={blockquoteStyle}>
-            <p style={textStyle}>"I find this level of neglect extremely unprofessional, especially considering how long this matter has been left unattended. As a registered agent relying on this service, the continuous delay has not only disrupted my operations but also affected my business credibility."</p>
+            <p style={textStyle}>"You advertised 8.5% APY but I'm barely getting 6.5% because of these hidden fees that weren't clearly disclosed. This feels like false advertising and I want compensation for the misleading information."</p>
           </div>
         </div>
 
@@ -339,45 +327,35 @@ export default function DemoDigestEmail({
         {/* Service Issues Section */}
         <h2 style={h2Style}>Service issues</h2>
 
-        {/* Service Categories */}
-        <div style={categoryContainerStyle}>
-          <div style={categoryBoxStyle}>
-            <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>Missing Spectranet credits</div>
-            <div style={{ fontSize: '18px', fontWeight: 'bold' }}>142 INTERACTIONS</div>
-            <div style={{ fontSize: '12px' }}>24% OF COMPLAINTS</div>
-          </div>
-          <div style={categoryBoxStyle}>
-            <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>Quickteller payment failures</div>
-            <div style={{ fontSize: '18px', fontWeight: 'bold' }}>89 INTERACTIONS</div>
-            <div style={{ fontSize: '12px' }}>15% OF COMPLAINTS</div>
-          </div>
-          <div style={categoryBoxStyle}>
-            <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>Delayed school fee payments</div>
-            <div style={{ fontSize: '18px', fontWeight: 'bold' }}>45 INTERACTIONS</div>
-            <div style={{ fontSize: '12px' }}>8% OF COMPLAINTS</div>
-          </div>
+        {/* Service Issues Categories Image */}
+        <div style={{ textAlign: 'center', margin: '24px 0' }}>
+          <img
+            src={serviceIssuesImageUrl || "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=300&q=80"}
+            alt="Service Issues Categories Breakdown"
+            style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }}
+          />
         </div>
         
         <p style={textStyle}>
-          There were <strong style={strongStyle}>588 service issues</strong> this week with <strong style={strongStyle}>1 high-risk</strong>, <strong style={strongStyle}>547 medium-risk</strong>, and <strong style={strongStyle}>40 low-risk</strong>.
+          There were <strong style={strongStyle}>741 service issues</strong> this week with <strong style={strongStyle}>3 high-risk</strong>, <strong style={strongStyle}>682 medium-risk</strong>, and <strong style={strongStyle}>56 low-risk</strong>.
         </p>
         
         <p style={textStyle}>These were the most frequent service issues:</p>
         
         <ul style={{ ...textStyle, paddingLeft: '20px' }}>
           <li style={{ marginBottom: '8px' }}>
-            <strong style={strongStyle}>142 (24%)</strong> were <strong style={strongStyle}>missing Spectranet credits</strong>. For example, <a href="#" style={linkStyle}>Official donmosco</a> (in progress) customer payment of ₦12,000 not credited with reversal pending investigation.
+            <strong style={strongStyle}>230 (31%)</strong> were <strong style={strongStyle}>trading API disconnections</strong>. For example, <a href="#" style={linkStyle}>CryptoTrader_Pro</a> (resolved) lost $3,200 in potential profits due to 15-minute API outage during market volatility.
           </li>
           <li style={{ marginBottom: '8px' }}>
-            <strong style={strongStyle}>89 (15%)</strong> were <strong style={strongStyle}>Quickteller payment failures</strong>. For example, <a href="#" style={linkStyle}>Rukkytots</a> (in progress) experienced delayed Quickteller payment verification causing urgent dissatisfaction with ₦35,109 Spectranet payment.
+            <strong style={strongStyle}>141 (19%)</strong> were <strong style={strongStyle}>SMS 2FA delivery failures</strong>. For example, <a href="#" style={linkStyle}>TokenMaster_2025</a> (in progress) unable to access account for 6 hours due to SMS provider issues in Southeast Asia region.
           </li>
           <li style={{ marginBottom: '8px' }}>
-            <strong style={strongStyle}>45 (8%)</strong> were <strong style={strongStyle}>delayed school fee payments</strong>. For example, <a href="#" style={linkStyle}>GODWIN SHITTU</a> (in progress) paid ₦275,300 resit fee but hasn't received service value yet on Afe Babalola University portal.
+            <strong style={strongStyle}>89 (12%)</strong> were <strong style={strongStyle}>fiat deposit processing delays</strong>. For example, <a href="#" style={linkStyle}>InvestorLux</a> (resolved) wire transfer of $125,000 took 4 business days instead of promised same-day processing.
           </li>
         </ul>
 
         <p style={textStyle}>
-          Top providers mentioned in service issues this week were: Spectranet (142 tickets, 24%), Afe Babalola University (25 tickets, 4%), and EEDC (15 tickets, 3%).
+          Top service providers mentioned in issues this week were: Plaid Banking API (89 tickets, 12%), Twilio SMS (67 tickets, 9%), and Stripe Payment Gateway (45 tickets, 6%).
         </p>
 
         <p style={textStyle}>
@@ -390,24 +368,24 @@ export default function DemoDigestEmail({
         <h2 style={h2Style}>Product issues</h2>
         
         <p style={textStyle}>
-          There were <strong style={strongStyle}>8 product issues</strong> this week with <strong style={strongStyle}>5 medium-risk</strong> and <strong style={strongStyle}>3 low-risk</strong>.
+          There were <strong style={strongStyle}>14 product issues</strong> this week with <strong style={strongStyle}>8 medium-risk</strong> and <strong style={strongStyle}>6 low-risk</strong>.
         </p>
 
         <h3 style={h3Style}>
-          1. <a href="#" style={linkStyle}>Loan Request - Opay Account Verification Failure</a>
+          1. <a href="#" style={linkStyle}>Multi-Currency Wallet Synchronization Bug</a>
         </h3>
         
         <div style={ticketDetailStyle}>
-          <p style={textStyle}><strong style={strongStyle}>Customer:</strong> Gamaliel Hyeinmen</p>
-          <p style={textStyle}><strong style={strongStyle}>Date:</strong> September 5, 2025</p>
-          <p style={textStyle}><strong style={strongStyle}>Freshdesk ticket:</strong> <a href="#" style={linkStyle}>#925370</a></p>
+          <p style={textStyle}><strong style={strongStyle}>Customer:</strong> Alexandra Chen</p>
+          <p style={textStyle}><strong style={strongStyle}>Date:</strong> October 19, 2025</p>
+          <p style={textStyle}><strong style={strongStyle}>Support ticket:</strong> <a href="#" style={linkStyle}>#PRD-156789</a></p>
           <p style={textStyle}><strong style={strongStyle}>Summary:</strong></p>
           <p style={textStyle}>
-            Customer is experiencing a verification failure with their Opay account on the Quickteller app, preventing access to a loan offer they urgently need. The agent provided a thorough and professional response, advising the customer to retry due to possible network issues and to try another bank card if the problem persists.
+            Customer's multi-currency wallet is displaying incorrect balances across different cryptocurrencies. The USD equivalent calculations are off by significant amounts, showing $47,000 when the actual value should be $52,300. This affects their DeFi lending decisions and portfolio rebalancing strategies.
           </p>
           
           <div style={blockquoteStyle}>
-            <p style={textStyle}>"Please I am trying to get a loan on the app. I got an offer but it keeps saying that it cannot verify my opay account and I urgently need this money. I cannot get a different ATM Card for another local bank account till Monday and the urgency cannot wait till Monday."</p>
+            <p style={textStyle}>"I cannot make informed investment decisions when your wallet shows wrong balances. The USD conversions are completely off and this could cost me thousands in bad trades. Please fix this immediately!"</p>
           </div>
         </div>
 
@@ -420,23 +398,20 @@ export default function DemoDigestEmail({
         {/* Scorecard Performance Section */}
         <h2 style={h2Style}>Scorecard performance</h2>
 
-        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px', margin: '24px 0' }}>
-          <div style={scoreCardStyle}>
-            <div style={metricLabelStyle}>Soft Skills</div>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', margin: '8px 0' }}>96/100</div>
-            <div style={{ fontSize: '12px', background: '#10b981', padding: '4px 8px', borderRadius: '4px' }}>+2 POINTS</div>
+        {scorecardImageUrl ? (
+          <div style={{ textAlign: 'center', margin: '24px 0' }}>
+            <img
+              src={scorecardImageUrl}
+              alt="Scorecard Performance"
+              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }}
+            />
           </div>
-          <div style={scoreCardStyle}>
-            <div style={metricLabelStyle}>Technical Skills</div>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', margin: '8px 0' }}>95/100</div>
-            <div style={{ fontSize: '12px', background: '#6b7280', padding: '4px 8px', borderRadius: '4px' }}>NO CHANGE</div>
+        ) : (
+          <div style={{ textAlign: 'center', margin: '24px 0', padding: '40px', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+            <div style={{ fontSize: '16px', color: '#6b7280', marginBottom: '8px' }}>📊 Scorecard Performance Image</div>
+            <div style={{ fontSize: '14px', color: '#9ca3af' }}>Upload an image to show performance metrics and scores</div>
           </div>
-          <div style={scoreCardStyle}>
-            <div style={metricLabelStyle}>Process & Regulatory Compliance</div>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', margin: '8px 0' }}>98/100</div>
-            <div style={{ fontSize: '12px', background: '#6b7280', padding: '4px 8px', borderRadius: '4px' }}>NO CHANGE</div>
-          </div>
-        </div>
+        )}
 
         <p style={textStyle}>Based on this week's interactions, here are the average scorecard criteria scores (from lowest to highest):</p>
         

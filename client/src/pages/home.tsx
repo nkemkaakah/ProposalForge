@@ -7,13 +7,34 @@ export default function Home() {
   const [previewData, setPreviewData] = useState<{
     companyName: string;
     recipientEmail: string;
+    customerName1?: string;
+    customerName2?: string;
+    customerName3?: string;
     bannerImageUrl?: string;
     chartImageUrl?: string;
+    logoImageUrl?: string;
+    complaintChartUrl?: string;
+    metricsImageUrl?: string;
+    scorecardImageUrl?: string;
+    serviceIssuesImageUrl?: string;
   } | null>(null);
 
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
-  const handlePreview = (data: { companyName: string; recipientEmail: string; bannerImageUrl?: string; chartImageUrl?: string }) => {
+  const handlePreview = (data: { 
+    companyName: string; 
+    recipientEmail: string; 
+    customerName1?: string;
+    customerName2?: string;
+    customerName3?: string;
+    bannerImageUrl?: string; 
+    chartImageUrl?: string;
+    logoImageUrl?: string;
+    complaintChartUrl?: string;
+    metricsImageUrl?: string;
+    scorecardImageUrl?: string;
+    serviceIssuesImageUrl?: string;
+  }) => {
     setPreviewData(data);
     setIsPreviewOpen(true);
   };
@@ -51,8 +72,16 @@ export default function Home() {
         isOpen={isPreviewOpen}
         onClose={handleClosePreview}
         companyName={previewData?.companyName || ""}
+        customerName1={previewData?.customerName1}
+        customerName2={previewData?.customerName2}
+        customerName3={previewData?.customerName3}
         bannerImageUrl={previewData?.bannerImageUrl}
         chartImageUrl={previewData?.chartImageUrl}
+        logoImageUrl={previewData?.logoImageUrl}
+        complaintChartUrl={previewData?.complaintChartUrl}
+        metricsImageUrl={previewData?.metricsImageUrl}
+        scorecardImageUrl={previewData?.scorecardImageUrl}
+        serviceIssuesImageUrl={previewData?.serviceIssuesImageUrl}
       />
     </div>
   );

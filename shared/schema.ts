@@ -37,12 +37,20 @@ export const insertEmailLogSchema = createInsertSchema(emailLogs).pick({
 export const sendEmailSchema = z.object({
   companyName: z.string().min(2, "Company name must be at least 2 characters"),
   recipientEmail: z.string().email("Please enter a valid email address"),
-  bannerImageUrl: z.string().url().optional().or(z.literal('')),
-  chartImageUrl: z.string().url().optional().or(z.literal('')),
-  dateRange: z.string().optional().or(z.literal('')),
-  totalTickets: z.string().optional().or(z.literal('')),
-  qaScore: z.string().optional().or(z.literal('')),
-  totalInteractions: z.string().optional().or(z.literal('')),
+  
+  // Optional customer names for personalization
+  customerName1: z.string().optional().or(z.literal('')),
+  customerName2: z.string().optional().or(z.literal('')),
+  customerName3: z.string().optional().or(z.literal('')),
+  
+  // Optional images - support both URLs and uploads
+  bannerImageUrl: z.string().optional().or(z.literal('')),
+  chartImageUrl: z.string().optional().or(z.literal('')),
+  logoImageUrl: z.string().optional().or(z.literal('')),
+  complaintChartUrl: z.string().optional().or(z.literal('')),
+  metricsImageUrl: z.string().optional().or(z.literal('')),
+  scorecardImageUrl: z.string().optional().or(z.literal('')),
+  serviceIssuesImageUrl: z.string().optional().or(z.literal(''))
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

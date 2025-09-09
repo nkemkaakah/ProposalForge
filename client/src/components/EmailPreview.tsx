@@ -5,24 +5,32 @@ interface EmailPreviewProps {
   isOpen: boolean;
   onClose: () => void;
   companyName: string;
+  customerName1?: string;
+  customerName2?: string;
+  customerName3?: string;
   bannerImageUrl?: string;
   chartImageUrl?: string;
-  dateRange?: string;
-  totalTickets?: string;
-  qaScore?: string;
-  totalInteractions?: string;
+  logoImageUrl?: string;
+  complaintChartUrl?: string;
+  metricsImageUrl?: string;
+  scorecardImageUrl?: string;
+  serviceIssuesImageUrl?: string;
 }
 
 export default function EmailPreview({ 
   isOpen, 
   onClose, 
   companyName, 
+  customerName1,
+  customerName2,
+  customerName3,
   bannerImageUrl, 
-  chartImageUrl, 
-  dateRange, 
-  totalTickets, 
-  qaScore, 
-  totalInteractions 
+  chartImageUrl,
+  logoImageUrl,
+  complaintChartUrl,
+  metricsImageUrl,
+  scorecardImageUrl,
+  serviceIssuesImageUrl
 }: EmailPreviewProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -34,12 +42,16 @@ export default function EmailPreview({
           <div className="border border-border rounded-lg p-6 bg-gray-50">
             <DemoDigestEmail 
               companyName={companyName || "Demo Company"} 
+              customerName1={customerName1}
+              customerName2={customerName2}
+              customerName3={customerName3}
               bannerImageUrl={bannerImageUrl}
               chartImageUrl={chartImageUrl}
-              dateRange={dateRange}
-              totalTickets={totalTickets}
-              qaScore={qaScore}
-              totalInteractions={totalInteractions}
+              logoImageUrl={logoImageUrl}
+              complaintChartUrl={complaintChartUrl}
+              metricsImageUrl={metricsImageUrl}
+              scorecardImageUrl={scorecardImageUrl}
+              serviceIssuesImageUrl={serviceIssuesImageUrl}
             />
           </div>
         </div>
