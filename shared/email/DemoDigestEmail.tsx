@@ -36,7 +36,12 @@ export default function DemoDigestEmail({
   };
 
   const headerBannerStyle = {
-    background: 'linear-gradient(135deg, #1f2937 0%, #3b82f6 100%)',
+    background: bannerImageUrl 
+      ? `linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%), url(${bannerImageUrl})`
+      : 'linear-gradient(135deg, #1f2937 0%, #3b82f6 100%)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
     padding: '40px 48px',
     color: 'white',
     position: 'relative' as const,
@@ -172,21 +177,12 @@ export default function DemoDigestEmail({
     <div style={containerStyles} data-testid="email-preview-content">
       {/* Header Banner */}
       <div style={headerBannerStyle}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '8px' }}>
-              {companyName} ⚡
-            </div>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', letterSpacing: '2px' }}>
-              CUSTOMER DIGEST
-            </div>
+        <div>
+          <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '8px' }}>
+            {companyName} ⚡
           </div>
-          <div style={{ opacity: 0.6 }}>
-            <img 
-              src={bannerImageUrl || logoImageUrl || "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80"} 
-              alt="Report Visual" 
-              style={{ width: '200px', height: 'auto', borderRadius: '8px' }}
-            />
+          <div style={{ fontSize: '32px', fontWeight: 'bold', letterSpacing: '2px' }}>
+            CUSTOMER DIGEST
           </div>
         </div>
       </div>
