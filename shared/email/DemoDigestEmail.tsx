@@ -37,7 +37,7 @@ export default function DemoDigestEmail({
 
   const headerBannerStyle = {
     background: bannerImageUrl 
-      ? `linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%), url(${bannerImageUrl})`
+      ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${bannerImageUrl})`
       : 'linear-gradient(135deg, #1f2937 0%, #3b82f6 100%)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
