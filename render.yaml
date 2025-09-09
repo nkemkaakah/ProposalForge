@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: proposalforge
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: RESEND_API_KEY
+        sync: false  # Set this in Render dashboard
+    healthCheckPath: /
+    autoDeploy: true
