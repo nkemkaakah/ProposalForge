@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
@@ -66,6 +67,10 @@ app.use((req, res, next) => {
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
+    console.log(`🚀 Server started successfully!`);
+    console.log(`📡 Backend API running on: http://localhost:${port}/api`);
+    console.log(`🌐 Frontend running on: http://localhost:${port}`);
+    console.log(`📧 Resend API Key loaded: ${process.env.RESEND_API_KEY ? '✅ Yes' : '❌ No'}`);
     log(`serving on port ${port}`);
   });
 })();

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface DemoDigestEmailProps {
   companyName: string;
   bannerImageUrl?: string;

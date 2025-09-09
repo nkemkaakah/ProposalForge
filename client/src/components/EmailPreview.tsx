@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import DemoDigestEmail from "./DemoDigestEmail";
+import DemoDigestEmail from "@shared/email/DemoDigestEmail";
 
 interface EmailPreviewProps {
   isOpen: boolean;
@@ -7,9 +7,23 @@ interface EmailPreviewProps {
   companyName: string;
   bannerImageUrl?: string;
   chartImageUrl?: string;
+  dateRange?: string;
+  totalTickets?: string;
+  qaScore?: string;
+  totalInteractions?: string;
 }
 
-export default function EmailPreview({ isOpen, onClose, companyName, bannerImageUrl, chartImageUrl }: EmailPreviewProps) {
+export default function EmailPreview({ 
+  isOpen, 
+  onClose, 
+  companyName, 
+  bannerImageUrl, 
+  chartImageUrl, 
+  dateRange, 
+  totalTickets, 
+  qaScore, 
+  totalInteractions 
+}: EmailPreviewProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden" data-testid="modal-email-preview">
@@ -22,6 +36,10 @@ export default function EmailPreview({ isOpen, onClose, companyName, bannerImage
               companyName={companyName || "Demo Company"} 
               bannerImageUrl={bannerImageUrl}
               chartImageUrl={chartImageUrl}
+              dateRange={dateRange}
+              totalTickets={totalTickets}
+              qaScore={qaScore}
+              totalInteractions={totalInteractions}
             />
           </div>
         </div>

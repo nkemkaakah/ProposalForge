@@ -39,6 +39,10 @@ export const sendEmailSchema = z.object({
   recipientEmail: z.string().email("Please enter a valid email address"),
   bannerImageUrl: z.string().url().optional().or(z.literal('')),
   chartImageUrl: z.string().url().optional().or(z.literal('')),
+  dateRange: z.string().optional().or(z.literal('')),
+  totalTickets: z.string().optional().or(z.literal('')),
+  qaScore: z.string().optional().or(z.literal('')),
+  totalInteractions: z.string().optional().or(z.literal('')),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

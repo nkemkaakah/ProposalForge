@@ -13,8 +13,12 @@ import { Loader2 } from "lucide-react";
 const formSchema = z.object({
   companyName: z.string().min(2, "Company name must be at least 2 characters"),
   recipientEmail: z.string().email("Please enter a valid email address"),
-  bannerImageUrl: z.string().url().optional().or(z.literal('')),
-  chartImageUrl: z.string().url().optional().or(z.literal('')),
+  bannerImageUrl: z.string().url().optional().or(z.literal("")),
+  chartImageUrl: z.string().url().optional().or(z.literal("")),
+  dateRange: z.string().optional().or(z.literal("")),
+  totalTickets: z.string().optional().or(z.literal("")),
+  qaScore: z.string().optional().or(z.literal("")),
+  totalInteractions: z.string().optional().or(z.literal("")),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -34,6 +38,10 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
       recipientEmail: "",
       bannerImageUrl: "",
       chartImageUrl: "",
+      dateRange: "September 1, 2025 - September 7, 2025",
+      totalTickets: "928",
+      qaScore: "95",
+      totalInteractions: "5387",
     },
   });
 
@@ -64,18 +72,21 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
       return response.json();
     },
     onSuccess: (data) => {
-      navigator.clipboard.writeText(data.html).then(() => {
-        toast({
-          title: "HTML copied to clipboard!",
-          description: "Email HTML has been copied to your clipboard",
+      navigator.clipboard
+        .writeText(data.html)
+        .then(() => {
+          toast({
+            title: "HTML copied to clipboard!",
+            description: "Email HTML has been copied to your clipboard",
+          });
+        })
+        .catch(() => {
+          toast({
+            title: "Failed to copy",
+            description: "Could not copy HTML to clipboard",
+            variant: "destructive",
+          });
         });
-      }).catch(() => {
-        toast({
-          title: "Failed to copy",
-          description: "Could not copy HTML to clipboard",
-          variant: "destructive",
-        });
-      });
     },
     onError: (error: any) => {
       toast({
@@ -93,7 +104,7 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
   const handlePreview = () => {
     const data = form.getValues();
     const validation = formSchema.safeParse(data);
-    
+
     if (!validation.success) {
       validation.error.errors.forEach((error) => {
         form.setError(error.path[0] as keyof FormData, {
@@ -109,7 +120,7 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
   const handleCopyHTML = async () => {
     const data = form.getValues();
     const validation = formSchema.safeParse(data);
-    
+
     if (!validation.success) {
       validation.error.errors.forEach((error) => {
         form.setError(error.path[0] as keyof FormData, {
@@ -132,13 +143,16 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Company Name Input */}
           <div>
-            <Label htmlFor="companyName" className="block text-sm font-medium text-foreground mb-2">
+            <Label
+              htmlFor="companyName"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
               Company Name
             </Label>
             <Input
               id="companyName"
               type="text"
-              placeholder="Demo Company"
+              placeholder="Enter Company Name"
               {...form.register("companyName")}
               data-testid="input-company-name"
               className="w-full"
@@ -152,13 +166,16 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
 
           {/* Recipient Email Input */}
           <div>
-            <Label htmlFor="recipientEmail" className="block text-sm font-medium text-foreground mb-2">
+            <Label
+              htmlFor="recipientEmail"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
               Recipient Email
             </Label>
             <Input
               id="recipientEmail"
               type="email"
-              placeholder="nkemkaomeiza@gmail.com"
+              placeholder="Enter Recipient Email"
               {...form.register("recipientEmail")}
               data-testid="input-recipient-email"
               className="w-full"
@@ -171,17 +188,86 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
           </div>
         </div>
 
+        {/* Data Customization Fields */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Date Range */}
+          <div>
+            <Label htmlFor="dateRange" className="block text-sm font-medium text-foreground mb-2">
+              Report Date Range <span className="text-muted-foreground text-xs">(optional)</span>
+            </Label>
+            <Input
+              id="dateRange"
+              type="text"
+              placeholder="September 1, 2025 - September 7, 2025"
+              {...form.register("dateRange")}
+              data-testid="input-date-range"
+              className="w-full"
+            />
+          </div>
+
+          {/* Total Tickets */}
+          <div>
+            <Label htmlFor="totalTickets" className="block text-sm font-medium text-foreground mb-2">
+              Total Tickets <span className="text-muted-foreground text-xs">(optional)</span>
+            </Label>
+            <Input
+              id="totalTickets"
+              type="text"
+              placeholder="928"
+              {...form.register("totalTickets")}
+              data-testid="input-total-tickets"
+              className="w-full"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* QA Score */}
+          <div>
+            <Label htmlFor="qaScore" className="block text-sm font-medium text-foreground mb-2">
+              QA Score <span className="text-muted-foreground text-xs">(optional)</span>
+            </Label>
+            <Input
+              id="qaScore"
+              type="text"
+              placeholder="95"
+              {...form.register("qaScore")}
+              data-testid="input-qa-score"
+              className="w-full"
+            />
+          </div>
+
+          {/* Total Interactions */}
+          <div>
+            <Label htmlFor="totalInteractions" className="block text-sm font-medium text-foreground mb-2">
+              Total Interactions <span className="text-muted-foreground text-xs">(optional)</span>
+            </Label>
+            <Input
+              id="totalInteractions"
+              type="text"
+              placeholder="5387"
+              {...form.register("totalInteractions")}
+              data-testid="input-total-interactions"
+              className="w-full"
+            />
+          </div>
+        </div>
+
         {/* Optional Image Fields Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Banner Image URL */}
           <div>
-            <Label htmlFor="bannerImageUrl" className="block text-sm font-medium text-foreground mb-2">
-              Banner Image URL <span className="text-muted-foreground text-xs">(optional)</span>
+            <Label
+              htmlFor="bannerImageUrl"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              Banner Image URL{" "}
+              <span className="text-muted-foreground text-xs">(optional)</span>
             </Label>
             <Input
               id="bannerImageUrl"
               type="url"
-              placeholder="https://example.com/banner.png"
+              placeholder="Enter Banner Image URL"
               {...form.register("bannerImageUrl")}
               data-testid="input-banner-image"
               className="w-full"
@@ -195,13 +281,17 @@ export default function EmailForm({ onPreview }: EmailFormProps) {
 
           {/* Chart Image URL */}
           <div>
-            <Label htmlFor="chartImageUrl" className="block text-sm font-medium text-foreground mb-2">
-              Chart Image URL <span className="text-muted-foreground text-xs">(optional)</span>
+            <Label
+              htmlFor="chartImageUrl"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              Chart Image URL{" "}
+              <span className="text-muted-foreground text-xs">(optional)</span>
             </Label>
             <Input
               id="chartImageUrl"
               type="url"
-              placeholder="https://example.com/chart.png"
+              placeholder="Enter Chart Image URL"
               {...form.register("chartImageUrl")}
               data-testid="input-chart-image"
               className="w-full"

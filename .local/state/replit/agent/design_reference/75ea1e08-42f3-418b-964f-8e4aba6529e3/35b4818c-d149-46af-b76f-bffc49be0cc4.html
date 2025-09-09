@@ -1,0 +1,553 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Email Generator - Retail Business Proposals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "system-ui", "sans-serif"],
+                }
+            },
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --radius: 6px;
+            --background: hsl(0 0% 100%);
+            --foreground: hsl(210 40% 20%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(210 40% 20%);
+            --primary: hsl(168 76% 36%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(210 14% 96%);
+            --secondary-foreground: hsl(210 40% 40%);
+            --muted: hsl(210 14% 96%);
+            --muted-foreground: hsl(210 40% 45%);
+            --border: hsl(210 20% 85%);
+            --input: hsl(210 20% 92%);
+            --ring: hsl(168 76% 36%);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .modal-backdrop {
+            backdrop-filter: blur(4px);
+        }
+
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #0F766E;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .toast {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground min-h-screen">
+    <!-- @COMPONENT: Header -->
+    <header class="border-b border-border bg-card">
+        <div class="max-w-4xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <!-- Company logo placeholder -->
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-primary-foreground font-semibold text-sm">R</span>
+                    </div>
+                    <h1 class="text-xl font-semibold text-foreground">Demo Email Generator</h1>
+                </div>
+                
+                <!-- @COMPONENT: RoleIndicator [shows current user role] -->
+                <div class="flex items-center space-x-3">
+                    <span class="text-sm text-muted-foreground">Retail Manager</span>
+                    <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
+                        <span class="text-xs font-medium text-secondary-foreground">RM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: MainContent -->
+    <main class="max-w-4xl mx-auto px-6 py-8">
+        <!-- @COMPONENT: IntroSection -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-foreground mb-2">Demo Email Sender</h2>
+            <p class="text-muted-foreground">Send demo customer service reports to prospects with customizable company branding</p>
+        </div>
+        <!-- @END_COMPONENT: IntroSection -->
+
+        <!-- @COMPONENT: EmailForm [handles form submission and validation] -->
+        <form id="emailForm" class="space-y-6">
+            <!-- @STATE: formData:object = {companyName: '', recipientEmail: ''} -->
+            <!-- @STATE: isLoading:boolean = false -->
+            <!-- @STATE: errors:object = {} -->
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Company Name Input -->
+                <div class="space-y-2">
+                    <label for="companyName" class="block text-sm font-medium text-foreground">
+                        Company Name
+                    </label>
+                    <input 
+                        type="text" 
+                        id="companyName" 
+                        name="companyName"
+                        data-bind="formData.companyName"
+                        placeholder="Demo Company"
+                        class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-colors"
+                        required
+                        minlength="2"
+                        data-mock="true"
+                    />
+                    <div id="companyNameError" class="text-sm text-red-600 hidden"></div>
+                </div>
+
+                <!-- Recipient Email Input -->
+                <div class="space-y-2">
+                    <label for="recipientEmail" class="block text-sm font-medium text-foreground">
+                        Recipient Email
+                    </label>
+                    <input 
+                        type="email" 
+                        id="recipientEmail" 
+                        name="recipientEmail"
+                        data-bind="formData.recipientEmail"
+                        placeholder="nkemkaomeiza@gmail.com"
+                        class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-colors"
+                        required
+                        data-mock="true"
+                    />
+                    <div id="recipientEmailError" class="text-sm text-red-600 hidden"></div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-3 pt-4">
+                <button 
+                    type="button" 
+                    id="previewBtn"
+                    data-event="click:handlePreview"
+                    class="px-6 py-2 border border-border rounded-md bg-background text-foreground hover:bg-secondary transition-colors font-medium"
+                >
+                    Preview Email
+                </button>
+                
+                <button 
+                    type="submit" 
+                    id="sendBtn"
+                    data-event="click:handleSendEmail"
+                    data-implementation="Should validate form and call Resend API"
+                    class="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors font-medium flex items-center space-x-2"
+                >
+                    <span id="sendBtnText">Send Email</span>
+                    <div id="sendBtnSpinner" class="loading-spinner hidden"></div>
+                </button>
+                
+                <button 
+                    type="button" 
+                    id="copyHtmlBtn"
+                    data-event="click:handleCopyHtml"
+                    data-implementation="Should generate and copy HTML to clipboard"
+                    class="px-6 py-2 border border-border rounded-md bg-secondary text-secondary-foreground hover:bg-muted transition-colors font-medium"
+                >
+                    Copy HTML
+                </button>
+            </div>
+        </form>
+        <!-- @END_COMPONENT: EmailForm -->
+
+        <!-- @COMPONENT: AccessControlInfo [shows role-based permissions] -->
+        <div class="mt-12 p-4 bg-muted rounded-lg border border-border">
+            <h3 class="font-medium text-foreground mb-2">Role-Based Access Controls</h3>
+            <div class="text-sm text-muted-foreground space-y-1">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span>Retail Manager: Full access to email generation and sending</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                    <span>Sales Rep: Preview only, no sending capabilities</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                    <span>Viewer: Read-only access to generated content</span>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: AccessControlInfo -->
+    </main>
+    <!-- @END_COMPONENT: MainContent -->
+
+    <!-- @COMPONENT: PreviewModal [displays email preview] -->
+    <div id="previewModal" class="fixed inset-0 bg-black/50 modal-backdrop z-50 hidden">
+        <!-- @STATE: isPreviewOpen:boolean = false -->
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-card rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+                <div class="flex items-center justify-between p-4 border-b border-border">
+                    <h3 class="text-lg font-semibold text-foreground">Email Preview</h3>
+                    <button 
+                        id="closePreviewBtn"
+                        data-event="click:closePreview"
+                        class="p-1 hover:bg-secondary rounded-md transition-colors"
+                    >
+                        <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div id="previewContent" class="p-6 overflow-y-auto max-h-[60vh]">
+                    <!-- @FUNCTIONALITY: This will be populated with the email template content -->
+                    <div class="border border-border rounded-lg p-6 bg-background">
+                        <div class="flex items-center mb-4">
+                            <!-- Rulebase logo placeholder -->
+                            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-primary-foreground font-bold text-xl">R</span>
+                            </div>
+                        </div>
+                        
+                        <h1 class="text-2xl font-semibold text-foreground mb-4" data-bind="emailContent.title">
+                            Account closure report for <span id="previewCompanyName" data-mock="true">Demo Company</span> - July 2025
+                        </h1>
+                        
+                        <div class="space-y-4 text-foreground">
+                            <p>In July 2025, there were <strong>115</strong> account closure requests. The key reasons for requesting closure were:</p>
+                            
+                            <ol class="list-decimal list-inside space-y-2 ml-4">
+                                <li><strong>Unspecified reasons</strong> (~35%) - Customers requesting closure without providing detailed explanations</li>
+                                <li><strong>Banking consolidation</strong> (~25%) - Customers closing accounts because they have multiple banks and want to reduce the number of accounts they maintain</li>
+                                <li><strong>Account restrictions/liens</strong> (~20%) - Customer frustration with account restrictions due to erroneous transfer disputes</li>
+                                <li><strong>Account setup issues</strong> (~10%) - Problems completing account creation, BVN/NIN mismatches, or profile setup</li>
+                                <li><strong>Service dissatisfaction</strong> (~7%) - General dissatisfaction with customer service and resolution processes</li>
+                                <li><strong>Overdraft disputes</strong> (~3%) - Issues with overdraft interest calculations and repayment terms</li>
+                            </ol>
+                            
+                            <p>Click "View full report" to see all customer interactions.</p>
+                            
+                            <div class="text-center pt-4">
+                                <div class="inline-block px-6 py-3 bg-gradient-to-br from-slate-600 to-slate-700 text-white rounded-md font-semibold shadow-lg">
+                                    View full report
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: PreviewModal -->
+
+    <!-- @COMPONENT: ToastNotification [shows success/error messages] -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-50 space-y-2">
+        <!-- @MAP: toasts.map(toast => ( -->
+        <div id="toast" class="toast bg-card border border-border rounded-lg shadow-lg p-4 min-w-80 hidden">
+            <div class="flex items-center space-x-3">
+                <div id="toastIcon" class="flex-shrink-0"></div>
+                <div>
+                    <div id="toastTitle" class="font-medium text-foreground"></div>
+                    <div id="toastMessage" class="text-sm text-muted-foreground"></div>
+                </div>
+                <button id="closeToastBtn" class="flex-shrink-0 p-1 hover:bg-secondary rounded-md transition-colors">
+                    <svg class="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- @END_MAP )) -->
+    </div>
+    <!-- @END_COMPONENT: ToastNotification -->
+
+    <script>
+        (function() {
+            // TODO: Implement business logic, API calls, and state management
+            
+            const formData = {
+                companyName: '',
+                recipientEmail: ''
+            };
+            
+            let isLoading = false;
+            let errors = {};
+
+            // Form elements
+            const emailForm = document.getElementById('emailForm');
+            const companyNameInput = document.getElementById('companyName');
+            const recipientEmailInput = document.getElementById('recipientEmail');
+            const previewBtn = document.getElementById('previewBtn');
+            const sendBtn = document.getElementById('sendBtn');
+            const copyHtmlBtn = document.getElementById('copyHtmlBtn');
+            
+            // Modal elements
+            const previewModal = document.getElementById('previewModal');
+            const closePreviewBtn = document.getElementById('closePreviewBtn');
+            const previewCompanyName = document.getElementById('previewCompanyName');
+            
+            // Toast elements
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.getElementById('toast');
+            
+            // Event listeners
+            previewBtn.addEventListener('click', handlePreview);
+            sendBtn.addEventListener('click', handleSendEmail);
+            copyHtmlBtn.addEventListener('click', handleCopyHtml);
+            closePreviewBtn.addEventListener('click', closePreview);
+            emailForm.addEventListener('submit', handleFormSubmit);
+            
+            function handlePreview() {
+                if (validateForm()) {
+                    updateFormData();
+                    previewCompanyName.textContent = formData.companyName || 'Demo Company';
+                    showModal();
+                }
+            }
+            
+            function handleSendEmail(e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    updateFormData();
+                    sendEmail();
+                }
+            }
+            
+            function handleCopyHtml() {
+                if (validateForm()) {
+                    updateFormData();
+                    copyEmailHtml();
+                }
+            }
+            
+            function handleFormSubmit(e) {
+                e.preventDefault();
+                handleSendEmail(e);
+            }
+            
+            function validateForm() {
+                clearErrors();
+                let isValid = true;
+                
+                const companyName = companyNameInput.value.trim();
+                const recipientEmail = recipientEmailInput.value.trim();
+                
+                if (!companyName || companyName.length < 2) {
+                    showError('companyNameError', 'Company name must be at least 2 characters');
+                    isValid = false;
+                }
+                
+                if (!recipientEmail || !isValidEmail(recipientEmail)) {
+                    showError('recipientEmailError', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            function updateFormData() {
+                formData.companyName = companyNameInput.value.trim();
+                formData.recipientEmail = recipientEmailInput.value.trim();
+            }
+            
+            function sendEmail() {
+                setLoading(true);
+                
+                // Simulate API call
+                setTimeout(() => {
+                    setLoading(false);
+                    showToast('success', 'Email sent successfully!', `Demo email sent to ${formData.recipientEmail}`);
+                }, 2000);
+            }
+            
+            function copyEmailHtml() {
+                const htmlContent = generateEmailHtml();
+                
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(htmlContent).then(() => {
+                        showToast('success', 'HTML copied!', 'Email HTML has been copied to clipboard');
+                    }).catch(() => {
+                        fallbackCopyToClipboard(htmlContent);
+                    });
+                } else {
+                    fallbackCopyToClipboard(htmlContent);
+                }
+            }
+            
+            function generateEmailHtml() {
+                return `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Account closure report for ${formData.companyName} - July 2025</title>
+</head>
+<body style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Ubuntu,sans-serif; line-height: 1.4; color: #374151;">
+    <img src="https://app.rulebase.co/img/rulebase-logo.png" alt="Rulebase" width="64" height="64" />
+    <h1 style="color: #1f2937; font-size: 24px; font-weight: 600; line-height: 1.25; margin: 0 0 16px 0;">Account closure report for ${formData.companyName} - July 2025</h1>
+    <p style="margin: 0 0 16px 0;">In July 2025, there were <strong>115</strong> account closure requests. The key reasons for requesting closure were:</p>
+    <!-- Full email content would be generated here -->
+</body>
+</html>`;
+            }
+            
+            function fallbackCopyToClipboard(text) {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    showToast('success', 'HTML copied!', 'Email HTML has been copied to clipboard');
+                } catch (err) {
+                    showToast('error', 'Copy failed', 'Unable to copy HTML to clipboard');
+                }
+                
+                document.body.removeChild(textArea);
+            }
+            
+            function showModal() {
+                previewModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closePreview() {
+                previewModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+            
+            function setLoading(loading) {
+                isLoading = loading;
+                const sendBtnText = document.getElementById('sendBtnText');
+                const sendBtnSpinner = document.getElementById('sendBtnSpinner');
+                
+                if (loading) {
+                    sendBtnText.textContent = 'Sending...';
+                    sendBtnSpinner.classList.remove('hidden');
+                    sendBtn.disabled = true;
+                    sendBtn.classList.add('opacity-75');
+                } else {
+                    sendBtnText.textContent = 'Send Email';
+                    sendBtnSpinner.classList.add('hidden');
+                    sendBtn.disabled = false;
+                    sendBtn.classList.remove('opacity-75');
+                }
+            }
+            
+            function showError(elementId, message) {
+                const errorElement = document.getElementById(elementId);
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            }
+            
+            function clearErrors() {
+                const errorElements = document.querySelectorAll('[id$="Error"]');
+                errorElements.forEach(el => {
+                    el.textContent = '';
+                    el.classList.add('hidden');
+                });
+            }
+            
+            function showToast(type, title, message) {
+                const toastIcon = document.getElementById('toastIcon');
+                const toastTitle = document.getElementById('toastTitle');
+                const toastMessage = document.getElementById('toastMessage');
+                const closeToastBtn = document.getElementById('closeToastBtn');
+                
+                // Set icon based on type
+                if (type === 'success') {
+                    toastIcon.innerHTML = '<div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>';
+                } else {
+                    toastIcon.innerHTML = '<div class="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center"><svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></div>';
+                }
+                
+                toastTitle.textContent = title;
+                toastMessage.textContent = message;
+                
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('show'), 100);
+                
+                // Auto hide after 5 seconds
+                setTimeout(() => hideToast(), 5000);
+                
+                closeToastBtn.onclick = hideToast;
+            }
+            
+            function hideToast() {
+                toast.classList.remove('show');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }
+            
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+            
+            // Close modal when clicking outside
+            previewModal.addEventListener('click', (e) => {
+                if (e.target === previewModal) {
+                    closePreview();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !previewModal.classList.contains('hidden')) {
+                    closePreview();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
