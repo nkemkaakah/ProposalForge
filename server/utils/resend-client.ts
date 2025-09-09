@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 
 // Clean the API key to remove any potential whitespace/newlines
-const rawApiKey = process.env.RESEND_API_KEY || 're_Ya7kxFbv_C3MBZHxhrfaZbsKwJ5xNQjBn';
+const rawApiKey = process.env.RESEND_API_KEY
 const resendApiKey = rawApiKey?.trim().replace(/[\r\n]/g, '');
 
 console.log('🔑 Using API key:', resendApiKey ? `${resendApiKey.substring(0, 8)}...` : 'None');
